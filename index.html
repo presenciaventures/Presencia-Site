@@ -3,440 +3,407 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Presencia — Practicing Presence Through Play, Place, and Everyday Living</title>
+  <title>PRESENCIA | The Corkboard, Series &amp; Play</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cork-base: #c59560;
-      --frame-green: #213729;
-      --paper-cream: #fcfaf2;
-      --paper-yellow: #fdf0a6;
-      --ink-dark: #1f2421;
-      --ink-muted: #525b56;
+      --cork-base: #b88856;
+      --cork-dark: #94683b;
+      --cork-light: #cea06e;
+      --wood-frame: #243b2f;
+      --wood-trim: #17271f;
+      --paper-cream: #fbf9f3;
+      --paper-yellow: #fdf2c4;
+      --ink: #1f2421;
+      --ink-soft: #4a534d;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--ink-dark);
+      padding: 0;
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Full-Bleed Tactile Corkboard Surface with Subtle Panel Seams & Wooden Frame */
+    body {
+      min-height: 100vh;
       background-color: var(--cork-base);
       background-image:
-        radial-gradient(rgba(82, 48, 18, 0.24) 1px, transparent 0),
-        radial-gradient(rgba(255, 232, 198, 0.30) 1px, transparent 0),
-        radial-gradient(rgba(110, 66, 26, 0.16) 1.5px, transparent 0),
-        linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(72,40,14,0.08) 100%);
-      background-size: 22px 22px, 29px 29px, 17px 17px, 100% 100%;
-      background-position: 0 0, 11px 14px, 5px 8px, 0 0;
-      border: 14px solid var(--frame-green);
-      min-height: 100vh;
+        linear-gradient(90deg, transparent 49.85%, rgba(62, 38, 16, 0.22) 50%, transparent 50.15%),
+        linear-gradient(0deg, transparent 74.85%, rgba(62, 38, 16, 0.16) 75%, transparent 75.15%),
+        radial-gradient(rgba(68, 41, 17, 0.26) 1.2px, transparent 0),
+        radial-gradient(rgba(255, 242, 218, 0.28) 1px, transparent 0),
+        radial-gradient(rgba(105, 66, 28, 0.2) 1.7px, transparent 0);
+      background-size: 100% 100%, 100% 560px, 23px 23px, 18px 18px, 35px 35px;
+      background-position: 0 0, 0 0, 0 0, 7px 11px, 14px 6px;
+      border: 12px solid var(--wood-frame);
+      box-shadow: inset 0 0 42px rgba(32, 18, 7, 0.34);
     }
 
-    .font-display { font-family: 'Fredoka', sans-serif; }
-    .font-hand { font-family: 'Caveat', cursive; }
+    @media (max-width: 640px) {
+      body {
+        border-width: 7px;
+      }
+    }
 
-    /* =========================================================
-       WHITE / CREAM RULED NOTEBOOK PAPER
-       ========================================================= */
-    .lined-paper {
-      background-color: #fcfbf5;
+    .font-hand {
+      font-family: 'Caveat', cursive;
+    }
+
+    .font-retro {
+      font-family: 'Pacifico', cursive;
+    }
+
+    /* Ruled Notebook Paper with Crisp Horizontal Lines (#cbd5e1) & Subtle Red Margin Line */
+    .ruled-sheet {
+      background-color: var(--paper-cream);
       background-image:
-        linear-gradient(90deg, transparent 34px, rgba(225, 112, 112, 0.30) 34px, rgba(225, 112, 112, 0.30) 35px, transparent 35px),
+        linear-gradient(90deg, transparent 34px, rgba(220, 88, 88, 0.24) 34px, rgba(220, 88, 88, 0.24) 35.5px, transparent 35.5px),
         repeating-linear-gradient(
           to bottom,
           transparent 0px,
-          transparent 27px,
-          #cbd5e1 27px,
-          #cbd5e1 28px
+          transparent 26px,
+          #cbd5e1 27px
         );
-      background-position: 0 0, 0 14px;
-      line-height: 28px;
-    }
-
-    .lined-paper-compact {
-      background-color: #fcfbf5;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 25px,
-        #cbd5e1 25px,
-        #cbd5e1 26px
-      );
-      background-position: 0 12px;
-    }
-
-    /* =========================================================
-       STRICT ONE-FASTENER-PER-CARD SYSTEM
-       ========================================================= */
-    .pinned {
+      border: 1px solid #dfd6c3;
+      box-shadow:
+        0 10px 22px rgba(38, 22, 9, 0.24),
+        0 2px 5px rgba(0, 0, 0, 0.12);
       position: relative;
-      box-shadow: 0 8px 18px rgba(34, 20, 8, 0.22), 0 2px 5px rgba(34, 20, 8, 0.14);
     }
 
-    .pinned::before,
-    .pinned::after {
-      content: "";
-      position: absolute;
-      top: 12px;
-      width: 17px;
-      height: 17px;
+    /* Compact Ruled Paper Card (Horizontal Lines #cbd5e1 without Margin Line) */
+    .ruled-note {
+      background-color: var(--paper-cream);
+      background-image:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 24px,
+          #cbd5e1 25px
+        );
+      border: 1px solid #dfd6c3;
+      box-shadow:
+        0 10px 22px rgba(38, 22, 9, 0.24),
+        0 2px 5px rgba(0, 0, 0, 0.12);
+      position: relative;
+    }
+
+    /* Unlined Tactile Index Card (Used for Colored/Pillar Cards & Header Bar) */
+    .index-card {
+      background-color: var(--paper-cream);
+      border: 1px solid #dfd6c3;
+      box-shadow:
+        0 8px 18px rgba(38, 22, 9, 0.22),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    /* Warm Cream Note Banner */
+    .cream-banner {
+      background-color: #fbf7ec;
+      border: 1px solid #ddd2bc;
+      box-shadow:
+        0 9px 20px rgba(38, 22, 9, 0.24),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    /* Colored Yellow Sticky Note (Unlined) */
+    .sticky-yellow {
+      background-color: var(--paper-yellow);
+      border: 1px solid #e5d491;
+      box-shadow:
+        0 8px 16px rgba(38, 22, 9, 0.24),
+        0 2px 3px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    /* Realistic 3D Slate-Green Push Pin (.pinned elements ONLY) */
+    .slate-pin {
+      width: 19px;
+      height: 19px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #7d9686 0%, #43574b 55%, #233028 100%);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.36), inset 0 1.5px 2px rgba(255, 255, 255, 0.45);
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    .pinned::before { left: 16px; }
-    .pinned::after { right: 16px; }
-
-    .taped {
-      position: relative;
-      box-shadow: 0 7px 16px rgba(34, 20, 8, 0.19), 0 2px 4px rgba(34, 20, 8, 0.12);
-    }
-
-    .taped::before {
-      content: "";
+      background: radial-gradient(circle at 34% 28%, #9eb0a5 0%, #485e51 55%, #1e2b24 100%);
+      box-shadow:
+        4px 7px 7px rgba(28, 17, 7, 0.52),
+        1px 2px 2px rgba(0, 0, 0, 0.35),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.48);
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1.5deg);
-      width: 96px;
-      height: 24px;
-      background: var(--tape-color, rgba(242, 232, 196, 0.78));
-      border-left: 1px dashed rgba(90, 80, 55, 0.25);
-      border-right: 1px dashed rgba(90, 80, 55, 0.25);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    .taped-corners {
-      position: relative;
-      box-shadow: 0 8px 18px rgba(34, 20, 8, 0.20);
-    }
-
-    .taped-corners::before,
-    .taped-corners::after {
-      content: "";
-      position: absolute;
-      top: -10px;
-      width: 74px;
-      height: 22px;
-      background: rgba(242, 232, 196, 0.82);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-      z-index: 20;
-      pointer-events: none;
-    }
-
-    .taped-corners::before { left: 14px; transform: rotate(-18deg); }
-    .taped-corners::after { right: 14px; transform: rotate(18deg); }
-
-    /* =========================================================
-       LOCKED PNG CUTOUTS (NO VISITOR UPLOAD CONTROLS)
-       ========================================================= */
-    .cutout-item {
-      position: relative;
-      display: inline-block;
-      transition: transform 0.2s ease;
-      user-select: none;
-    }
-
-    .cutout-item:hover {
-      transform: scale(1.035) rotate(0deg) !important;
-      z-index: 30;
-    }
-
-    /* =========================================================
-       NAV TABS & SUBTABS
-       ========================================================= */
-    .nav-pill {
-      transition: all 0.18s ease;
-      border: 1.5px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
-    }
-
-    .nav-pill:hover {
-      background: #eef2f6;
-      transform: translateY(-1px);
-    }
-
-    .nav-pill.active {
-      background: var(--frame-green);
-      color: #ffffff;
-      border-color: var(--frame-green);
-      box-shadow: 0 3px 8px rgba(33, 55, 41, 0.28);
-    }
-
-    .subtab-pill {
-      transition: all 0.16s ease;
-      border: 1.5px solid #d1d5db;
-      background: #ffffff;
-      color: #374151;
-    }
-
-    .subtab-pill.active {
-      background: #2f5233;
-      color: #ffffff;
-      border-color: #2f5233;
-    }
-
-    /* =========================================================
-       STANDALONE 600px CLAW MACHINE CABINET & LIGHT BANK
-       ========================================================= */
-    .arcade-cabinet {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      background: linear-gradient(180deg, #273e30 0%, #1c2e23 100%);
-      border: 5px solid #132018;
-      border-radius: 22px 22px 14px 14px;
-      box-shadow: 0 20px 38px rgba(26, 15, 6, 0.42), inset 0 2px 4px rgba(255, 255, 255, 0.14);
-      padding: 16px 16px 20px;
-      position: relative;
-    }
-
-    .arcade-marquee {
-      background: linear-gradient(90deg, #16241b 0%, #243b2d 50%, #16241b 100%);
-      border: 3px solid #d9b25f;
-      border-radius: 12px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), inset 0 0 18px rgba(217, 178, 95, 0.24);
-    }
-
-    .arcade-title-glow {
-      text-shadow: 0 2px 0 #101b14, 0 0 14px rgba(246, 224, 156, 0.48);
-    }
-
-    .light-bank {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #0f1913;
-      padding: 6px 9px;
-      border-radius: 999px;
-      border: 1.5px solid #35503f;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.65);
-    }
-
-    .arcade-bulb {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: var(--bulb-color, #475569);
-      border: 1.5px solid rgba(255, 255, 255, 0.35);
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-      transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .arcade-bulb.flashing {
-      animation: bulbFlash 0.32s infinite alternate ease-in-out;
-    }
-
-    .arcade-bulb.flashing:nth-child(2) {
-      animation-delay: 0.11s;
-    }
-
-    .arcade-bulb.flashing:nth-child(3) {
-      animation-delay: 0.22s;
-    }
-
-    @keyframes bulbFlash {
-      0% {
-        opacity: 0.38;
-        transform: scale(0.92);
-        box-shadow: 0 0 3px var(--bulb-color);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1.14);
-        box-shadow: 0 0 14px var(--bulb-color), 0 0 24px var(--bulb-color);
-      }
-    }
-
-    .arcade-glass {
-      position: relative;
-      height: 365px;
-      border-radius: 12px;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255, 249, 230, 0.85) 0%, rgba(235, 224, 198, 0.72) 55%, rgba(198, 183, 152, 0.88) 100%);
-      border: 4px solid #132018;
-      overflow: hidden;
-      box-shadow: inset 0 10px 26px rgba(0, 0, 0, 0.22), inset 0 -12px 20px rgba(42, 28, 14, 0.18);
-    }
-
-    .arcade-glass::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(115deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.04) 36%, transparent 37%);
-      pointer-events: none;
-      z-index: 25;
-    }
-
-    .gantry-bar {
-      position: absolute;
-      top: 14px;
-      left: 12px;
-      right: 12px;
-      height: 8px;
-      background: linear-gradient(180deg, #94a3b8 0%, #475569 100%);
-      border-radius: 99px;
-      z-index: 10;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
-    }
-
-    .claw-carriage {
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 56px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       z-index: 15;
       pointer-events: none;
     }
 
-    .claw-motor {
-      width: 34px;
-      height: 18px;
-      background: linear-gradient(180deg, #e2e8f0 0%, #64748b 100%);
-      border: 2px solid #1e293b;
-      border-radius: 6px;
-    }
-
-    .claw-cable {
-      width: 4px;
-      height: 22px;
-      background: #334155;
-      transition: height 0.55s cubic-bezier(0.34, 1.15, 0.64, 1);
-    }
-
-    .claw-head {
-      position: relative;
-      width: 56px;
-      height: 36px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .claw-hub {
-      width: 16px;
-      height: 12px;
-      background: #1e293b;
-      border-radius: 4px;
-      z-index: 3;
-    }
-
-    .claw-arm-left,
-    .claw-arm-right {
+    .slate-pin::after {
+      content: "";
       position: absolute;
-      top: 6px;
-      width: 22px;
-      height: 30px;
-      border: 4px solid #334155;
-      transition: transform 0.28s ease;
-    }
-
-    .claw-arm-left {
-      left: 6px;
-      border-right: none;
-      border-bottom: none;
-      border-radius: 14px 0 0 12px;
-      transform-origin: top right;
-      transform: rotate(24deg);
-    }
-
-    .claw-arm-right {
-      right: 6px;
-      border-left: none;
-      border-bottom: none;
-      border-radius: 0 14px 12px 0;
-      transform-origin: top left;
-      transform: rotate(-24deg);
-    }
-
-    .claw-closed .claw-arm-left { transform: rotate(-4deg); }
-    .claw-closed .claw-arm-right { transform: rotate(4deg); }
-
-    .capsule {
-      position: absolute;
-      width: 58px;
-      height: 58px;
+      top: 3.5px;
+      left: 4px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      border: 2.5px solid rgba(15, 23, 42, 0.35);
-      box-shadow: inset -5px -6px 10px rgba(0, 0, 0, 0.22), inset 4px 4px 8px rgba(255, 255, 255, 0.65), 0 4px 8px rgba(0, 0, 0, 0.22);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Translucent Masking & Washi Tape Strips (.taped elements ONLY) */
+    .masking-tape {
+      background: rgba(244, 234, 208, 0.9);
+      border-left: 1.5px dashed rgba(138, 121, 90, 0.52);
+      border-right: 1.5px dashed rgba(138, 121, 90, 0.52);
+      box-shadow: 0 2px 4px rgba(34, 20, 8, 0.22);
+      backdrop-filter: blur(1px);
+      position: absolute;
+      z-index: 14;
+      pointer-events: none;
+    }
+
+    .washi-tape {
+      border-left: 1.5px dashed rgba(255, 255, 255, 0.48);
+      border-right: 1.5px dashed rgba(255, 255, 255, 0.48);
+      box-shadow: 0 2px 5px rgba(34, 20, 8, 0.24);
+      backdrop-filter: blur(0.5px);
+      position: absolute;
+      z-index: 14;
+      pointer-events: none;
+    }
+
+    /* Scattered Extracted Corkboard Cutout Wrapper */
+    .cutout-slot {
+      position: relative;
+      display: inline-block;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .cutout-slot:hover {
+      filter: drop-shadow(0 10px 16px rgba(28, 16, 6, 0.34));
+    }
+
+    /* ===================================================================== */
+    /* STANDALONE ARCADE CLAW MACHINE CABINET (Fixed 600px Viewport Height)  */
+    /* ===================================================================== */
+    .arcade-stage {
+      width: 100%;
+      height: 600px;
+      max-height: 600px;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+    }
+
+    .arcade-cabinet {
+      width: 100%;
+      max-width: 680px;
+      height: 594px;
+      background: linear-gradient(180deg, #2c473a 0%, #243b30 62%, #1f3329 100%);
+      border: 4px solid #15231c;
+      border-radius: 26px 26px 16px 16px;
+      box-shadow:
+        0 18px 34px rgba(24, 14, 6, 0.42),
+        inset 0 2px 4px rgba(255, 255, 255, 0.16);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 18px 12px 18px;
+      position: relative;
       user-select: none;
-      transition: transform 0.2s ease, opacity 0.25s ease;
+      -webkit-user-select: none;
+    }
+
+    /* Warm Parchment & Gold Cabinet Side Pillars */
+    .arcade-cabinet::before,
+    .arcade-cabinet::after {
+      content: "";
+      position: absolute;
+      top: 58px;
+      bottom: 92px;
+      width: 7px;
+      background: linear-gradient(180deg, #fbf9f4 0%, #e5d7b7 50%, #d4a234 100%);
+      border: 1px solid #182820;
+      border-radius: 4px;
+    }
+    .arcade-cabinet::before { left: 5px; }
+    .arcade-cabinet::after { right: 5px; }
+
+    /* Sculpted Cabinet Top Canopy / Marquee */
+    .arcade-marquee {
+      height: 54px;
+      background: linear-gradient(180deg, #fbf9f4 0%, #f1e6cc 100%);
+      border: 3px solid #d4a234;
+      border-radius: 16px 16px 10px 10px;
+      box-shadow:
+        inset 0 0 18px rgba(212, 162, 52, 0.42),
+        0 4px 8px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      position: relative;
       overflow: hidden;
     }
 
-    .capsule:hover {
-      transform: scale(1.07);
-      z-index: 12 !important;
-    }
-
-    .capsule::before {
+    .arcade-marquee::after {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 48%;
-      background: rgba(255, 255, 255, 0.48);
-      border-bottom: 1.5px solid rgba(15, 23, 42, 0.16);
+      height: 46%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0) 100%);
       pointer-events: none;
     }
 
-    .capsule-label {
-      position: relative;
-      z-index: 2;
-      font-size: 9.5px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      color: #111827;
-      background: rgba(255, 255, 255, 0.88);
-      padding: 2px 6px;
-      border-radius: 999px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-      text-align: center;
-      line-height: 1.1;
+    .marquee-title-text {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #17271f;
+      text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9),
+        0 2px 6px rgba(212, 162, 52, 0.45);
+      z-index: 10;
     }
 
+    @media (max-width: 520px) {
+      .marquee-title-text {
+        font-size: 1.02rem;
+        letter-spacing: 0.14em;
+      }
+    }
+
+    /* 3-Bulb Arcade Indicator Light Bank */
+    .marquee-bulb-bank {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #182820;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1.5px solid #d4a234;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.65);
+      z-index: 10;
+    }
+
+    .marquee-bulb {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background-color: #d4a234;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 4px rgba(212, 162, 52, 0.5);
+      transition: background-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
+    }
+
+    @keyframes bulbIdle {
+      0%, 100% { opacity: 0.45; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    @keyframes bulbGrabFlash {
+      0%, 100% { opacity: 0.28; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .marquee-bulb.idle {
+      animation: bulbIdle 1.8s infinite ease-in-out;
+    }
+    .marquee-bulb.idle:nth-child(2) { animation-delay: 0.3s; }
+    .marquee-bulb.idle:nth-child(3) { animation-delay: 0.6s; }
+
+    .marquee-bulb.flashing {
+      animation: bulbGrabFlash 0.34s infinite ease-in-out;
+    }
+    .marquee-bulb.flashing:nth-child(2) { animation-delay: 0.11s; }
+    .marquee-bulb.flashing:nth-child(3) { animation-delay: 0.22s; }
+
+    /* Brushed Metal & Tempered Glass Display Case */
+    .glass-bezel {
+      flex: 1;
+      margin: 8px 0;
+      background: linear-gradient(180deg, #c2b9a5 0%, #9b917c 100%);
+      border: 4px solid #1f3329;
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.42),
+        0 2px 0 rgba(212, 162, 52, 0.25);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .viewport-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #fbf9f4;
+      border: 2px solid #59665f;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: inset 0 6px 18px rgba(24, 34, 28, 0.14);
+    }
+
+    /* Subtle Corner & Diagonal Glass Reflections */
+    .glass-glare {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.42) 0%, transparent 24%),
+        radial-gradient(circle at 90% 16%, rgba(255, 255, 255, 0.28) 0%, transparent 20%),
+        linear-gradient(
+          118deg,
+          rgba(255, 255, 255, 0.28) 0%,
+          rgba(255, 255, 255, 0.06) 28%,
+          transparent 29%,
+          transparent 66%,
+          rgba(255, 255, 255, 0.1) 67%,
+          transparent 84%
+        );
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    #clawCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Slanted Lower Control Console */
     .arcade-deck {
-      margin-top: 14px;
-      background: #14221a;
-      border: 2.5px solid #35503f;
-      border-radius: 14px;
-      padding: 12px 16px;
+      height: 84px;
+      background: linear-gradient(180deg, #fbf9f4 0%, #e5dac1 16%, #2c473a 18%, #1f3329 65%, #16241d 100%);
+      border: 3px solid #d4a234;
+      border-radius: 12px 12px 14px 14px;
+      box-shadow:
+        inset 0 2px 2px rgba(255, 255, 255, 0.25),
+        0 -2px 6px rgba(0, 0, 0, 0.35);
+      padding: 14px 16px 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      position: relative;
     }
 
-    .joystick-base {
-      width: 48px;
-      height: 48px;
+    /* Tactile Arcade Joystick Visual */
+    .joystick-assembly {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: radial-gradient(circle, #334155 0%, #0f172a 100%);
-      border: 2px solid #64748b;
+      background: radial-gradient(circle, #182820 38%, #4c5b52 42%, #29362f 100%);
+      border: 2px solid #d4a234;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 2px 3px rgba(255, 255, 255, 0.14);
       position: relative;
       display: flex;
       align-items: center;
@@ -444,744 +411,1501 @@
       flex-shrink: 0;
     }
 
+    .joystick-shaft {
+      width: 7px;
+      height: 21px;
+      background: linear-gradient(90deg, #8b9991, #dce5df, #64736b);
+      border-radius: 4px;
+      position: absolute;
+      bottom: 23px;
+      transform-origin: bottom center;
+      transition: transform 0.1s ease;
+    }
+
     .joystick-ball {
-      width: 26px;
-      height: 26px;
+      width: 23px;
+      height: 23px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #f87171 0%, #b91c1c 75%, #7f1d1d 100%);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      transition: transform 0.15s ease;
+      background: radial-gradient(circle at 32% 28%, #83c4a0 0%, #3e7b5c 58%, #214734 100%);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), inset 0 1.5px 2px rgba(255, 255, 255, 0.55);
+      position: absolute;
+      top: -13px;
+      left: -8px;
     }
 
-    .arcade-btn {
-      background: radial-gradient(circle at 35% 30%, #fde047 0%, #eab308 70%, #a16207 100%);
-      color: #1c1917;
+    /* Arcade Push Buttons */
+    .arcade-btn-nav {
+      background: linear-gradient(180deg, #fbf9f4 0%, #e5dcc7 100%);
+      color: #1f2421;
+      border: 2px solid #182820;
+      border-bottom-width: 5px;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.84rem;
       font-weight: 800;
-      border: 3px solid #fef08a;
-      box-shadow: 0 5px 0 #713f12, 0 8px 14px rgba(0, 0, 0, 0.45);
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      cursor: pointer;
+      transition: transform 0.06s ease, border-bottom-width 0.06s ease;
     }
 
-    .arcade-btn:active:not(:disabled) {
+    .arcade-btn-nav:active:not(:disabled) {
+      transform: translateY(3px);
+      border-bottom-width: 2px;
+    }
+
+    .arcade-btn-drop {
+      background: linear-gradient(180deg, #d9645d 0%, #b8443d 100%);
+      color: #fffdf8;
+      border: 2px solid #182820;
+      border-bottom-width: 6px;
+      border-radius: 999px;
+      padding: 9px 22px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      transition: transform 0.06s ease, border-bottom-width 0.06s ease;
+    }
+
+    .arcade-btn-drop:active:not(:disabled) {
       transform: translateY(4px);
-      box-shadow: 0 1px 0 #713f12, 0 3px 6px rgba(0, 0, 0, 0.45);
+      border-bottom-width: 2px;
     }
 
-    .arcade-btn:disabled {
-      opacity: 0.55;
+    .arcade-btn-nav:disabled,
+    .arcade-btn-drop:disabled {
+      opacity: 0.48;
       cursor: not-allowed;
     }
 
-    .prize-chute {
-      width: 78px;
-      height: 52px;
-      background: #090f0c;
-      border: 2.5px solid #475569;
-      border-radius: 8px;
-      box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.85);
-      flex-shrink: 0;
+    /* Drawn Capsule Ruled Note Overlay (Uses Tape Only, Zero Pins) */
+    .note-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(24, 34, 28, 0.62);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
+      z-index: 25;
     }
 
-    .page-view { display: none; }
-    .page-view.active { display: block; animation: fadeIn 0.22s ease; }
+    .note-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
+    .note-card {
+      border: 2px solid #d9cbb5;
+      border-radius: 14px;
+      max-width: 440px;
+      width: 100%;
+      padding: 26px 26px 22px 26px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+      transform: translateY(10px);
+      transition: transform 0.24s ease;
+      position: relative;
+    }
+
+    .note-overlay.visible .note-card {
+      transform: translateY(0);
     }
   </style>
 </head>
-<body class="py-6 px-3 sm:px-6 lg:px-10">
+<body class="flex flex-col">
 
-  <div class="max-w-5xl mx-auto">
+  <!-- TOP PINNED HEADER BAR (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
+  <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-5 z-20">
+    <header class="index-card rounded-2xl px-5 sm:px-7 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="slate-pin top-2.5 left-3"></div>
+      <div class="slate-pin top-2.5 right-3"></div>
 
-    <!-- =========================================================
-         TOP HEADER & NAVIGATION BAR (PINNED ONLY — NO TAPE)
-         ========================================================= -->
-    <header class="pinned bg-[#fcfaf2] rounded-xl px-6 py-4 mb-8">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pt-1">
-        <!-- Brand Title + Logo Slot Directly to the Right of PRESENCIA -->
-        <div class="flex items-center gap-3 flex-wrap">
-          <h1 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#213729]">
-            PRESENCIA
-          </h1>
-          <!-- Loads logo.png from your GitHub repo if uploaded; otherwise hides cleanly -->
-          <img
-            src="logo.png"
-            alt="Presencia Logo"
-            class="h-10 w-auto object-contain"
-            onerror="this.style.display='none'"
-          />
-        </div>
+      <!-- Left Cluster: PRESENCIA + Inline Logo Directly to the Right -->
+      <div class="pl-4 flex items-center gap-2.5">
+        <span class="font-extrabold tracking-[0.18em] text-base sm:text-lg uppercase text-[#1f2421]">
+          PRESENCIA
+        </span>
+        <img
+          id="brandLogoImg"
+          src="logo.png"
+          alt="Presencia Logo"
+          class="h-9 w-auto max-w-[130px] rounded-md object-contain border border-[#dfd6c3] bg-white px-1.5 py-0.5 shadow-2xs"
+          onerror="this.style.display='none'"
+        />
+      </div>
 
-        <!-- 3-Page Navigation -->
-        <nav class="flex flex-wrap items-center gap-2" aria-label="Main navigation">
-          <button type="button" class="nav-pill active px-4 py-2 rounded-lg text-sm font-bold" data-page="page-corkboard">
+      <!-- Right Cluster: 3 Navigation Tabs -->
+      <div class="pr-4 flex flex-wrap items-center gap-2.5 ml-auto sm:ml-0">
+        <nav aria-label="Primary View Tabs" class="bg-[#efe9da] p-1 rounded-xl border border-[#d8ceb8] flex flex-wrap items-center gap-1">
+          <button
+            id="navHome"
+            type="button"
+            class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#243b2f] text-[#fbf9f3] shadow-2xs cursor-pointer"
+          >
             The Corkboard &amp; 5 Pillars
           </button>
-          <button type="button" class="nav-pill px-4 py-2 rounded-lg text-sm font-bold" data-page="page-series">
+          <button
+            id="navSeries"
+            type="button"
+            class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421] cursor-pointer"
+          >
             Series &amp; Formats
           </button>
-          <button type="button" class="nav-pill px-4 py-2 rounded-lg text-sm font-bold" data-page="page-play">
+          <button
+            id="navPlay"
+            type="button"
+            class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421] cursor-pointer"
+          >
             Play
           </button>
         </nav>
       </div>
     </header>
+  </div>
 
-    <!-- =========================================================
-         PAGE 1: THE CORKBOARD & 5 PILLARS
-         ========================================================= -->
-    <main id="page-corkboard" class="page-view active space-y-10">
+  <!-- ===================================================================== -->
+  <!-- PAGE 1: THE CORKBOARD & 5 PILLARS                                     -->
+  <!-- ===================================================================== -->
+  <main id="viewHome" class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-10 relative">
 
-      <!-- TOP ZONE: Intro Ruled Sheet Tightly Flanked Left & Right by Cutout PNGs -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+    <!-- ZONE 1: TOP SCATTERED CUTOUTS FLANKING CENTER RULED INTRO SHEET -->
+    <section class="relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
 
-        <!-- Left Flanking Cutouts (be present.png & play.png) -->
-        <div class="lg:col-span-3 flex flex-row lg:flex-col items-center justify-center lg:items-end gap-5">
-          <div class="cutout-item" style="transform: rotate(-3.5deg);">
-            <img src="be present.png" alt="Be Present" class="w-44 sm:w-48 h-auto drop-shadow-md" />
+        <!-- Left Flank Column (Hugs Left Side of Intro Card) -->
+        <div class="lg:col-span-3 flex flex-row lg:flex-col items-center lg:items-end justify-around lg:justify-between gap-4 lg:py-2">
+          <!-- Cutout #1: Top-Left "Be Present" Torn Lined-Paper Strip -->
+          <div class="cutout-slot -rotate-3 hover:-rotate-1" data-cutout="bePresent">
+            <img id="imgBePresent" src="be present.png" alt="Be Present Cutout" class="max-w-[205px] sm:max-w-[230px] h-auto drop-shadow-md" />
           </div>
 
-          <div class="cutout-item lg:mr-3" style="transform: rotate(-6deg);">
-            <img src="play.png" alt="Play" class="w-24 sm:w-28 h-auto drop-shadow-md" />
+          <!-- Cutout #3: Lower-Left Yellow "Play" Sticker -->
+          <div class="cutout-slot -rotate-6 hover:rotate-0 lg:mr-3" data-cutout="play">
+            <img id="imgPlay" src="play.png" alt="Yellow Play Sticker" class="w-[92px] sm:w-[104px] h-auto drop-shadow-md" />
           </div>
         </div>
 
-        <!-- Center Ruled Intro Card (TAPED ONLY) -->
-        <div class="lg:col-span-6">
-          <div class="taped lined-paper rounded-xl p-6 sm:p-8 pl-12 sm:pl-14 flex flex-col justify-center" style="--tape-color: rgba(235, 224, 184, 0.85);">
-            <p class="font-hand text-2xl sm:text-[27px] font-bold text-[#213729] leading-snug mb-3">
-              Practicing presence through play, place, and everyday living.
+        <!-- Center Hero Intro Sheet (.taped with Two Diagonal Masking Tape Strips at Top Corners + Ruled Lines) -->
+        <div class="lg:col-span-6 ruled-sheet rounded-2xl p-6 sm:p-8 pl-11 sm:pl-12 pt-9">
+          <div class="masking-tape w-20 h-4 -top-2 left-5 -rotate-12"></div>
+          <div class="masking-tape w-20 h-4 -top-2 right-5 rotate-12"></div>
+
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1f2421] leading-tight mb-4">
+            Practicing presence through play, place, and everyday living.
+          </h1>
+
+          <div class="space-y-3.5 text-[15px] leading-relaxed text-[#28302b]">
+            <p>
+              The present is the only moment we directly experience. It is where we make sense of the past and shape what comes next.
             </p>
-            <p class="text-[15.5px] leading-[28px] text-[#28302c]">
-              The present is the only moment we actually live in. It is where we make sense of the past and where our choices shape what comes next. Presencia is not about passive relaxation or forced positivity. It is a daily habit of paying attention to the room you are already in, rolling with what shows up without resentment, and choosing where your energy goes.
+            <p>
+              Presencia is not passive relaxation, and it is not about forcing a good mood when things go sideways. It is paying attention to the exact room you are sitting in, noticing what is actually happening, and deciding where your energy goes.
             </p>
           </div>
+
+          <div class="pt-5 mt-5 border-t border-[#dfd6c3] flex flex-wrap items-center gap-3">
+            <button
+              id="ctaToSeries"
+              type="button"
+              class="px-4 py-2 rounded-xl bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] text-xs sm:text-sm font-bold transition-colors shadow-xs cursor-pointer"
+            >
+              See Active Series &rarr;
+            </button>
+            <button
+              id="ctaHeroToPlay"
+              type="button"
+              class="px-4 py-2 rounded-xl bg-[#fdf2c4] hover:bg-[#f6e6a4] text-[#1f2421] border border-[#dfd092] text-xs sm:text-sm font-bold transition-colors shadow-2xs cursor-pointer"
+            >
+              Open Play Hub &rarr;
+            </button>
+          </div>
         </div>
 
-        <!-- Right Flanking Cutouts (compass.png & optional learn.png) -->
-        <div class="lg:col-span-3 flex flex-row lg:flex-col items-center justify-center lg:items-start gap-5">
-          <div class="cutout-item" style="transform: rotate(3deg);">
-            <img src="compass.png" alt="Compass Rose" class="w-32 sm:w-36 h-auto drop-shadow-md" />
+        <!-- Right Flank Column (Hugs Right Side of Intro Card) -->
+        <div class="lg:col-span-3 flex flex-row lg:flex-col items-center lg:items-start justify-around lg:justify-between gap-4 lg:py-2">
+          <!-- Cutout #2: Top-Right "Compass Rose" on Blue Square Note -->
+          <div class="cutout-slot rotate-3 hover:rotate-0" data-cutout="compass">
+            <img id="imgCompass" src="compass.png" alt="Compass Rose Cutout" class="w-[112px] sm:w-[124px] h-auto drop-shadow-md" />
           </div>
 
-          <!-- Loads learn.png if uploaded to GitHub; falls back cleanly to crisp vector if not yet uploaded -->
-          <div class="cutout-item lg:ml-3" style="transform: rotate(5deg);">
-            <img
-              src="learn.png"
-              alt="Learn"
-              class="w-24 sm:w-28 h-auto drop-shadow-md"
-              onerror="this.outerHTML='<svg viewBox=\'0 0 160 160\' class=\'w-24 sm:w-28 h-auto drop-shadow-md\'><path d=\'M80,10 A70,70 0 1,1 142,112 C132,126 116,138 102,146 A70,70 0 0,1 80,10 Z\' fill=\'#9d4edd\'/><path d=\'M142,112 C126,110 112,116 105,128 C100,136 100,142 102,146 C116,138 132,126 142,112 Z\' fill=\'#7b2cbf\'/><text x=\'78\' y=\'86\' text-anchor=\'middle\' font-family=\'Caveat, cursive\' font-weight=\'700\' font-size=\'36\' fill=\'#111827\' transform=\'rotate(-10 78 86)\'>Learn</text></svg>'"
-            />
+          <!-- Cutout #4: Lower-Right Purple "Learn" Sticker (Auto-loads learn.png if uploaded, else renders vector) -->
+          <div class="cutout-slot rotate-6 hover:rotate-0 lg:ml-4" data-cutout="learn">
+            <img id="imgLearn" src="learn.png" alt="Purple Learn Sticker" class="w-[92px] sm:w-[104px] h-auto drop-shadow-md" onerror="this.style.display='none'; document.getElementById('svgLearn').classList.remove('hidden');" />
+            <div id="svgLearn" class="hidden drop-shadow-md">
+              <svg width="98" height="98" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M55 8 C81 8 102 29 102 55 C102 60 101 64 100 68 L68 100 C64 101 60 102 55 102 C29 102 8 81 8 55 C8 29 29 8 55 8 Z" fill="#8c52ff"/>
+                <path d="M100 68 C83 72 72 83 68 100 C82 92 92 82 100 68 Z" fill="#6f36e3"/>
+                <text x="53" y="61" text-anchor="middle" fill="#171224" font-family="'Caveat', cursive" font-weight="700" font-size="29" transform="rotate(-8 53 55)">Learn</text>
+              </svg>
+            </div>
           </div>
         </div>
 
-      </section>
+      </div>
+    </section>
 
-      <!-- MIDDLE ZONE: The 5 Canonical Pillars (Equal Size, Blank Space Below Pillar 2, Pillar 5 Under Pillar 3) -->
-      <section aria-labelledby="pillars-heading">
-        <div class="mb-6 flex items-center justify-between flex-wrap gap-2">
-          <h2 id="pillars-heading" class="font-display text-2xl sm:text-3xl font-bold text-[#1f2421] bg-[#fcfaf2]/90 inline-block px-4 py-1.5 rounded-lg shadow-sm">
-            The 5 Canonical Pillars of Presence
+    <!-- ZONE 2: CANONICAL 5 PILLARS OF PRESENCE -->
+    <section class="space-y-6 relative">
+      <!-- Small Taped Section Header Strip -->
+      <div class="flex justify-center">
+        <div class="cream-banner rounded-xl px-6 py-2.5 pt-3.5 inline-block">
+          <div class="masking-tape w-16 h-3.5 -top-2 left-1/2 -translate-x-1/2 -rotate-1"></div>
+          <h2 class="text-sm sm:text-base font-extrabold uppercase tracking-[0.14em] text-[#1f2421]">
+            The 5 Pillars of Presence
           </h2>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+      <!-- 3-Column Equal-Height Pillar Grid:
+           Row 1: Stewardship (#3e7b5c) | Acceptance (#567c96) | Connection (#c45c52)
+           Row 2: Wonder (#d99b38)      | Checklist Cutout     | Intention (#7c6396) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 items-stretch">
 
-          <!-- ROW 1, COL 1: Stewardship (Forest Green Washi Tape) -->
-          <article class="taped bg-[#f4f9f5] border-2 border-[#2f5e41] rounded-xl p-6 pt-7 flex flex-col justify-between min-h-[224px]" style="--tape-color: rgba(47, 94, 65, 0.78);">
+        <!-- ROW 1, COL 1: Stewardship (Forest Green #3e7b5c Washi Tape Only, Unlined Pillar Card) -->
+        <article class="index-card rounded-2xl p-6 pt-8 h-full min-h-[218px] flex flex-col justify-start border-t-4 -rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-top-color: #3e7b5c;">
+          <div class="washi-tape w-16 h-3.5 -top-2 left-5 -rotate-6" style="background: rgba(62, 123, 92, 0.88);"></div>
+          <div class="washi-tape w-16 h-3.5 -top-2 right-5 rotate-6" style="background: rgba(62, 123, 92, 0.88);"></div>
+          <div class="space-y-2.5">
             <div>
-              <h3 class="font-display text-xl font-bold text-[#1f422d] mb-2">Stewardship</h3>
-              <p class="text-sm leading-relaxed text-[#25362c]">
-                Caring for, building, and tending what is in front of you with patience instead of rushing for quick results or letting things fall apart.
-              </p>
-            </div>
-          </article>
-
-          <!-- ROW 1, COL 2: Acceptance (Slate Blue Washi Tape) -->
-          <article class="taped bg-[#f4f8fb] border-2 border-[#335c7d] rounded-xl p-6 pt-7 flex flex-col justify-between min-h-[224px]" style="--tape-color: rgba(51, 92, 125, 0.78);">
-            <div>
-              <h3 class="font-display text-xl font-bold text-[#213f57] mb-2">Acceptance</h3>
-              <p class="text-sm leading-relaxed text-[#25333f]">
-                Taking what happens as it comes and letting go of control without getting tilted when plans fall through or the rules shift.
-              </p>
-            </div>
-          </article>
-
-          <!-- ROW 1, COL 3: Connection (Terracotta Red Washi Tape) -->
-          <article class="taped bg-[#fdf6f5] border-2 border-[#a8383b] rounded-xl p-6 pt-7 flex flex-col justify-between min-h-[224px]" style="--tape-color: rgba(168, 56, 59, 0.78);">
-            <div>
-              <h3 class="font-display text-xl font-bold text-[#752325] mb-2">Connection</h3>
-              <p class="text-sm leading-relaxed text-[#3b2526]">
-                Showing up with another person while stepping into unfamiliar ground together on its own terms, paying real attention instead of running on autopilot.
-              </p>
-            </div>
-          </article>
-
-          <!-- ROW 2, COL 1: Wonder (Warm Amber Washi Tape) -->
-          <article class="taped bg-[#fefbf2] border-2 border-[#c28219] rounded-xl p-6 pt-7 flex flex-col justify-between min-h-[224px]" style="--tape-color: rgba(194, 130, 25, 0.78);">
-            <div>
-              <h3 class="font-display text-xl font-bold text-[#82540b] mb-2">Wonder</h3>
-              <p class="text-sm leading-relaxed text-[#3d311d]">
-                Approaching what you do not know yet with real curiosity, open eyes, and a willingness to play rather than assuming you have already seen it all.
-              </p>
-            </div>
-          </article>
-
-          <!-- ROW 2, COL 2: Open Corkboard Space Below Pillar 2 with checklist.png Cutout -->
-          <div class="hidden md:flex items-center justify-center p-2">
-            <div class="cutout-item" style="transform: rotate(-3deg);">
-              <img src="checklist.png" alt="Notice Explore Choose Reflect Embody" class="w-44 lg:w-48 h-auto drop-shadow-md" />
-            </div>
-          </div>
-
-          <!-- ROW 2, COL 3: Intention (Directly Below Pillar 3 — Muted Plum Washi Tape) -->
-          <article class="taped bg-[#f9f6fb] border-2 border-[#6a417a] rounded-xl p-6 pt-7 flex flex-col justify-between min-h-[224px]" style="--tape-color: rgba(106, 65, 122, 0.78);">
-            <div>
-              <h3 class="font-display text-xl font-bold text-[#482954] mb-2">Intention</h3>
-              <p class="text-sm leading-relaxed text-[#332638]">
-                Choosing where your attention, time, and effort go on purpose instead of drifting along with outside noise, hype, or habit.
-              </p>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- BOTTOM ZONE: Scattered Cutouts (worry wonder.png, teach.png, live.png) + Embodiment Integration -->
-      <section class="space-y-6">
-        <div class="flex flex-wrap items-center justify-around gap-6 px-2">
-          <!-- worry wonder.png -->
-          <div class="cutout-item" style="transform: rotate(-3deg);">
-            <img src="worry wonder.png" alt="Worry crossed out, Wonder circled" class="w-44 sm:w-52 h-auto drop-shadow-md" />
-          </div>
-
-          <!-- Mobile-only checklist.png -->
-          <div class="cutout-item md:hidden" style="transform: rotate(2deg);">
-            <img src="checklist.png" alt="Notice Explore Choose Reflect Embody" class="w-40 h-auto drop-shadow-md" />
-          </div>
-
-          <!-- teach.png (Pink Inquiry Note) -->
-          <div class="cutout-item" style="transform: rotate(1.5deg);">
-            <img src="teach.png" alt="What did this teach me? How can I meet this moment?" class="w-72 sm:w-80 h-auto drop-shadow-md" />
-          </div>
-
-          <!-- live.png -->
-          <div class="cutout-item" style="transform: rotate(5deg);">
-            <img src="live.png" alt="Live" class="w-24 sm:w-28 h-auto drop-shadow-md" />
-          </div>
-        </div>
-
-        <!-- Embodiment Banner (TAPED ONLY) -->
-        <div class="taped-corners bg-[#fcfaf2] rounded-xl p-6 sm:p-7 border-2 border-[#213729]">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h2 class="font-display text-2xl font-bold text-[#213729] mb-1">
-                Embodiment
-              </h2>
-              <p class="text-[15px] leading-relaxed text-[#28302c]">
-                Embodiment is not a sixth pillar. It is what happens when you practice all five together in real life, through how you play, how you care for your space, and how you show up each day.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- =========================================================
-         PAGE 2: SERIES & FORMATS
-         ========================================================= -->
-    <main id="page-series" class="page-view space-y-8">
-
-      <!-- Presencia Gaming Intro & YouTube Links Card (TAPED ONLY, RULED PAPER) -->
-      <section class="taped lined-paper rounded-xl p-6 sm:p-8 pl-12 sm:pl-14" style="--tape-color: rgba(235, 224, 184, 0.85);">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-[#213729] mb-2">
-              Presencia Gaming
-            </h2>
-            <p class="text-[15.5px] leading-[28px] text-[#28302c] mb-2">
-              Exploring different ways to be present, one game at a time. Hosted by Cincovato, every series uses a specific game setup to put one of the pillars to the test. Gameplay comes first, and reflection grows naturally out of what actually happens on screen.
-            </p>
-          </div>
-
-          <!-- Direct YouTube Links (Unlined Yellow Sticky Note) -->
-          <div class="bg-[#fdf0a6] border border-[#d6c265] rounded-lg p-4 shadow-sm flex flex-col gap-2.5 min-w-[240px]">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#665614]">Watch on YouTube</span>
-            <a id="link-channel" href="https://www.youtube.com/@PresenciaGaming" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between bg-[#213729] text-white text-xs font-bold px-3.5 py-2 rounded-md hover:bg-[#2f4d3a] transition">
-              <span>Presencia Gaming Channel</span>
-              <span>↗</span>
-            </a>
-            <a id="link-homestead" href="https://www.youtube.com/@PresenciaGaming/playlists" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between bg-white text-[#1f2421] border border-[#cbd5e1] text-xs font-bold px-3.5 py-2 rounded-md hover:bg-[#f1f5f9] transition">
-              <span>Homestead Playlist</span>
-              <span>↗</span>
-            </a>
-            <a id="link-presencialocke" href="https://www.youtube.com/@PresenciaGaming/playlists" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-between bg-white text-[#1f2421] border border-[#cbd5e1] text-xs font-bold px-3.5 py-2 rounded-md hover:bg-[#f1f5f9] transition">
-              <span>PresenciaLocke Playlist</span>
-              <span>↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Two Active Series Cards (PINNED ONLY — NO TAPE) -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-
-        <!-- Homestead Card -->
-        <article class="pinned bg-[#f4f9f5] border-2 border-[#2f5e41] rounded-xl p-6 pt-10 flex flex-col justify-between">
-          <div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <span class="bg-[#2f5e41] text-white text-xs font-bold px-2.5 py-1 rounded">
-                Minecraft | Sundays at 10:00 AM PT
+              <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #3e7b5c;">
+                Stewardship
               </span>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#2f5e41]">
-                Pillar: Stewardship
-              </span>
+              <p class="text-xs font-bold text-[#3e7b5c] mt-2">Taking care of what is in front of you</p>
             </div>
-            <h3 class="font-display text-2xl font-bold text-[#1f422d] mb-2">
-              Homestead
-            </h3>
-            <p class="text-sm leading-relaxed text-[#25362c] mb-4">
-              A long-running modded Minecraft world built around caring for, improving, and learning from a place over time. Instead of rushing to beat bosses or tearing up the map for quick resources, every path, retaining wall, and building is planned to fit the land and serve the world long term.
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Building, fixing, and maintaining a space, tool, or world with patience. Stewardship skips quick fixes and shortcuts in favor of leaving a place better and more lived-in than you found it.
             </p>
-          </div>
-          <div class="pt-3 border-t border-[#2f5e41]/20 flex items-center justify-between text-xs font-bold text-[#2f5e41]">
-            <span>Format: Long-Form World Building</span>
-            <a id="card-link-homestead" href="https://www.youtube.com/@PresenciaGaming/playlists" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#173322]">
-              Watch Series ↗
-            </a>
           </div>
         </article>
 
-        <!-- PresenciaLocke Card -->
-        <article class="pinned bg-[#f4f8fb] border-2 border-[#335c7d] rounded-xl p-6 pt-10 flex flex-col justify-between">
-          <div>
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <span class="bg-[#335c7d] text-white text-xs font-bold px-2.5 py-1 rounded">
-                Pokémon FireRed Ultra | Wednesdays at 10:00 AM PT
+        <!-- ROW 1, COL 2: Acceptance (Slate Blue #567c96 Washi Tape Only, Unlined Pillar Card) -->
+        <article class="index-card rounded-2xl p-6 pt-8 h-full min-h-[218px] flex flex-col justify-start border-t-4 rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-top-color: #567c96;">
+          <div class="washi-tape w-16 h-3.5 -top-2 left-5 -rotate-6" style="background: rgba(86, 124, 150, 0.88);"></div>
+          <div class="washi-tape w-16 h-3.5 -top-2 right-5 rotate-6" style="background: rgba(86, 124, 150, 0.88);"></div>
+          <div class="space-y-2.5">
+            <div>
+              <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #567c96;">
+                Acceptance
               </span>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#335c7d]">
-                Pillar: Acceptance
-              </span>
+              <p class="text-xs font-bold text-[#567c96] mt-2">Meeting what shows up</p>
             </div>
-            <h3 class="font-display text-2xl font-bold text-[#213f57] mb-2">
-              PresenciaLocke
-            </h3>
-            <p class="text-sm leading-relaxed text-[#25333f] mb-4">
-              A Pokémon FireRed Ultra challenge run built around working within the Presencia Shift, where who stays and who shifts changes the squad and forces you to adapt on the spot. Instead of resetting for ideal stats or holding onto one permanent team, every episode is about rolling with whoever is on the roster right now.
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Letting go of control without resentment when plans fall apart or the unexpected lands on your plate. Acceptance is not giving up. It is dropping the exhausting fight against what already happened so you can deal with what is actually here.
             </p>
-          </div>
-          <div class="pt-3 border-t border-[#335c7d]/20 flex items-center justify-between text-xs font-bold text-[#335c7d]">
-            <span>Format: Challenge Run &amp; Adaptation</span>
-            <a id="card-link-presencialocke" href="https://www.youtube.com/@PresenciaGaming/playlists" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#162b3d]">
-              Watch Series ↗
-            </a>
           </div>
         </article>
 
-      </section>
+        <!-- ROW 1, COL 3: Connection (Terracotta Red #c45c52 Washi Tape Only, Unlined Pillar Card) -->
+        <article class="index-card rounded-2xl p-6 pt-8 h-full min-h-[218px] flex flex-col justify-start border-t-4 -rotate-[0.3deg] hover:rotate-0 transition-transform" style="border-top-color: #c45c52;">
+          <div class="washi-tape w-16 h-3.5 -top-2 left-5 -rotate-6" style="background: rgba(196, 92, 82, 0.88);"></div>
+          <div class="washi-tape w-16 h-3.5 -top-2 right-5 rotate-6" style="background: rgba(196, 92, 82, 0.88);"></div>
+          <div class="space-y-2.5">
+            <div>
+              <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #c45c52;">
+                Connection
+              </span>
+              <p class="text-xs font-bold text-[#c45c52] mt-2">Paying attention in two directions</p>
+            </div>
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Stepping into unfamiliar territory while staying tethered to the people beside you. Connection means giving real attention to another person under pressure while meeting a new place or experience on its own terms.
+            </p>
+          </div>
+        </article>
 
-      <!-- What Makes Presencia Formats Different (TAPED ONLY, RULED PAPER) -->
-      <section class="taped lined-paper-compact rounded-xl p-6 sm:p-8" style="--tape-color: rgba(235, 224, 184, 0.85);">
-        <h3 class="font-display text-xl sm:text-2xl font-bold text-[#213729] mb-4">
-          What Makes Presencia Formats Different
-        </h3>
-        <div class="overflow-x-auto bg-white/90 rounded-lg border border-[#cbd5e1]">
-          <table class="w-full text-left border-collapse text-sm">
-            <thead>
-              <tr class="border-b-2 border-[#213729] text-[#213729] bg-[#f8fafc]">
-                <th class="py-3 px-4 font-extrabold">Part of the Show</th>
-                <th class="py-3 px-4 font-extrabold">Standard Gaming Channels</th>
-                <th class="py-3 px-4 font-extrabold">Presencia Gaming</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#cbd5e1] text-[#28302c]">
-              <tr>
-                <td class="py-3 px-4 font-bold">How the Game Is Played</td>
-                <td class="py-3 px-4">Optimized for speed, exploits, or min-maxing every stat.</td>
-                <td class="py-3 px-4">Played as a real place or challenge with rules that test patience and presence.</td>
-              </tr>
-              <tr>
-                <td class="py-3 px-4 font-bold">How Ideas Show Up</td>
-                <td class="py-3 px-4">Preachy lectures or forced life lessons pasted over random clips.</td>
-                <td class="py-3 px-4">Gameplay comes first; reflection grows directly out of what just happened.</td>
-              </tr>
-              <tr>
-                <td class="py-3 px-4 font-bold">When Things Go Wrong</td>
-                <td class="py-3 px-4">Rage-bait reactions, resets, or blaming bad luck.</td>
-                <td class="py-3 px-4">Meeting setbacks, losses, and random shifts openly without tilt.</td>
-              </tr>
-              <tr>
-                <td class="py-3 px-4 font-bold">Episode Focus</td>
-                <td class="py-3 px-4">Clickbait stunts or inside jokes that shut out new viewers.</td>
-                <td class="py-3 px-4">Clear, self-contained stories anyone can jump into right away.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+        <!-- ROW 2, COL 1: Wonder (Amber Gold #d99b38 Washi Tape Only, Unlined Pillar Card) -->
+        <article class="index-card rounded-2xl p-6 pt-8 h-full min-h-[218px] flex flex-col justify-start border-t-4 rotate-[0.35deg] hover:rotate-0 transition-transform" style="border-top-color: #d99b38;">
+          <div class="washi-tape w-16 h-3.5 -top-2 left-5 -rotate-6" style="background: rgba(217, 155, 56, 0.9);"></div>
+          <div class="washi-tape w-16 h-3.5 -top-2 right-5 rotate-6" style="background: rgba(217, 155, 56, 0.9);"></div>
+          <div class="space-y-2.5">
+            <div>
+              <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #d99b38;">
+                Wonder
+              </span>
+              <p class="text-xs font-bold text-[#b87e22] mt-2">Staying curious</p>
+            </div>
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Looking at ordinary rooms, unfamiliar rules, and unanswered questions without cynicism or autopilot. Wonder treats everyday details as things worth noticing up close.
+            </p>
+          </div>
+        </article>
 
-    </main>
-
-    <!-- =========================================================
-         PAGE 3: PLAY HUB (THE CLAW MACHINE + MORE FIELD GAMES)
-         ========================================================= -->
-    <main id="page-play" class="page-view space-y-8">
-
-      <!-- Play Sub-Navigation Bar (PINNED ONLY — NO TAPE) -->
-      <section class="pinned bg-[#fcfaf2] rounded-xl px-6 py-4 pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 class="font-display text-2xl font-bold text-[#213729]">Play Hub</h2>
-          <p class="text-xs text-[#525b56]">Interactive games built around noticing where you are right now.</p>
+        <!-- ROW 2, COL 2: Torn Spiral Checklist Cutout (checklist.png) -->
+        <div class="flex items-center justify-center py-2">
+          <div class="cutout-slot -rotate-2 hover:rotate-0" data-cutout="checklist">
+            <img id="imgChecklist" src="checklist.png" alt="Notice Explore Choose Reflect Embody Checklist" class="w-[188px] sm:w-[206px] h-auto drop-shadow-md" />
+          </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <button type="button" class="subtab-pill active px-4 py-2 rounded-lg text-xs font-bold" data-subtab="subtab-claw">
-            The Claw Machine
-          </button>
-          <button type="button" class="subtab-pill px-4 py-2 rounded-lg text-xs font-bold" data-subtab="subtab-more">
-            More Field Games (Coming Soon)
-          </button>
+        <!-- ROW 2, COL 3: Intention (Muted Plum #7c6396 Washi Tape Only, Directly Below Connection) -->
+        <article class="index-card rounded-2xl p-6 pt-8 h-full min-h-[218px] flex flex-col justify-start border-t-4 -rotate-[0.35deg] hover:rotate-0 transition-transform" style="border-top-color: #7c6396;">
+          <div class="washi-tape w-16 h-3.5 -top-2 left-5 -rotate-6" style="background: rgba(124, 99, 150, 0.88);"></div>
+          <div class="washi-tape w-16 h-3.5 -top-2 right-5 rotate-6" style="background: rgba(124, 99, 150, 0.88);"></div>
+          <div class="space-y-2.5">
+            <div>
+              <span class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #7c6396;">
+                Intention
+              </span>
+              <p class="text-xs font-bold text-[#7c6396] mt-2">Choosing your own pace</p>
+            </div>
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Deciding on purpose where your attention and next action go. Instead of letting algorithms, noise, or someone else's urgency run your day, you pick what matters and act on it.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ZONE 3: LOWER SCATTERED CUTOUTS + TAPED EMBODIMENT INTEGRATION BANNER -->
+    <section class="space-y-6 relative">
+
+      <div class="flex flex-wrap items-center justify-between gap-6 px-1 sm:px-3">
+
+        <!-- Cutout #5: Bottom-Left "Worry -> Wonder?" Ruled Scrap -->
+        <div class="cutout-slot -rotate-3 hover:rotate-0" data-cutout="worryWonder">
+          <img id="imgWorryWonder" src="worry wonder.png" alt="Worry to Wonder Cutout" class="w-[176px] sm:w-[196px] h-auto drop-shadow-md" />
         </div>
-      </section>
 
-      <!-- SUB-VIEW A: THE CLAW MACHINE (PINNED RULED POSTER ON CORKBOARD) -->
-      <section id="subtab-claw" class="subtab-view block">
-        <div class="pinned lined-paper rounded-2xl p-5 sm:p-8 pt-11 max-w-3xl mx-auto">
+        <!-- Cutout #6: Center Pink Inquiry Card (teach.png) -->
+        <div class="cutout-slot -rotate-1 hover:rotate-0" data-cutout="pinkCard">
+          <img id="imgPinkCard" src="teach.png" alt="Pink Inquiry Card Cutout" class="max-w-[295px] sm:max-w-[340px] h-auto drop-shadow-md" />
+        </div>
 
-          <!-- Standalone 600px Arcade Claw Machine Cabinet -->
-          <div class="arcade-cabinet" id="claw-cabinet">
+        <!-- Cutout #7: Far Bottom-Right Red "Live" Sticker (live.png) -->
+        <div class="cutout-slot rotate-3 hover:rotate-0" data-cutout="live">
+          <img id="imgLive" src="live.png" alt="Red Live Sticker" class="w-[92px] sm:w-[104px] h-auto drop-shadow-md" />
+        </div>
 
-            <!-- Prominent Marquee Header with 3-Bulb Dynamic Color Light Bank on Left -->
+      </div>
+
+      <!-- Bottom Integration Banner: Embodiment (.taped with Warm Tan Masking Tape Only) -->
+      <div class="cream-banner rounded-2xl p-6 sm:p-8 pt-8 border-2 border-[#d8ccb4]">
+        <div class="masking-tape w-20 h-4 -top-2 left-6 -rotate-6"></div>
+        <div class="masking-tape w-20 h-4 -top-2 right-6 rotate-6"></div>
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-3xl">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1f2421]">Embodiment</h2>
+            <p class="text-sm sm:text-[15.5px] leading-relaxed text-[#28302b]">
+              Embodiment is not a sixth pillar. It is what happens when the first five stop being ideas on a board and become how you move through the world. Whether you are fixing up a house, adapting to an unexpected loss, sitting across from a friend, or paying attention to a quiet afternoon, embodiment is presence lived out in practice.
+            </p>
+          </div>
+
+          <div class="shrink-0">
+            <button
+              id="ctaToPlay"
+              type="button"
+              class="w-full md:w-auto px-5 py-3 rounded-xl bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] font-bold text-sm transition-colors shadow-xs cursor-pointer"
+            >
+              Open the Play Hub &rarr;
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- PAGE 2: SERIES & FORMATS                                              -->
+  <!-- ===================================================================== -->
+  <section id="viewSeries" class="hidden flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-11">
+
+    <!-- Top Ruled Lined-Paper Header Card (.taped with Masking Tape Only) -->
+    <div class="ruled-sheet rounded-2xl p-6 sm:p-8 pl-11 sm:pl-12 pt-8">
+      <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+      <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-[#1f2421] tracking-tight">
+            Presencia Gaming
+          </h1>
+          <p class="text-[15.5px] sm:text-base leading-relaxed text-[#28302b]">
+            Exploring different ways to be present, one game at a time. Hosted by Cincovato. Gameplay leads, reflection follows.
+          </p>
+        </div>
+
+        <!-- Colored Yellow Sticky Note for YouTube Channel & Playlist Links (Unlined, Taped Only) -->
+        <div class="lg:col-span-5 sticky-yellow rounded-xl p-5 pt-7 rotate-[0.5deg]">
+          <div class="masking-tape w-16 h-4 -top-2 left-1/2 -translate-x-1/2"></div>
+          <div class="flex items-center gap-2.5 mb-3.5">
+            <span class="w-8 h-8 rounded-lg bg-[#c45c52] flex items-center justify-center text-white shrink-0 shadow-2xs">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </span>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-wider text-[#594f33]">YouTube Channel</p>
+              <p class="font-extrabold text-sm text-[#1f2421]">@PresenciaGaming</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <a
+              id="ytChannelLink"
+              href="https://www.youtube.com/@PresenciaGaming"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full text-center py-2 px-3 rounded-lg bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] font-bold text-xs transition-colors"
+            >
+              Watch on YouTube &nearr;
+            </a>
+            <div class="grid grid-cols-2 gap-2">
+              <a
+                id="ytHomesteadTopLink"
+                href="https://www.youtube.com/@PresenciaGaming/playlists"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center py-2 px-2.5 rounded-lg bg-[#3e7b5c] hover:bg-[#316349] text-white font-bold text-[11px] transition-colors"
+              >
+                Homestead Playlist &nearr;
+              </a>
+              <a
+                id="ytPresenciaLockeTopLink"
+                href="https://www.youtube.com/@PresenciaGaming/playlists"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center py-2 px-2.5 rounded-lg bg-[#567c96] hover:bg-[#43647a] text-white font-bold text-[11px] transition-colors"
+              >
+                PresenciaLocke Playlist &nearr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Equal-Height Pinned Series Cards (.pinned with Single 3D Slate Push Pins, NO Posture Badges) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 items-stretch">
+      <!-- Card 1: Homestead -->
+      <article class="index-card rounded-2xl p-6 sm:p-7 pt-9 h-full flex flex-col justify-between border-l-4 -rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-left-color: #3e7b5c;">
+        <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #3e7b5c;">
+              Stewardship
+            </span>
+            <span class="text-xs font-bold text-[#2b332e] bg-[#fdf2c4] border border-[#e3d18d] px-2.5 py-1 rounded-md">
+              Minecraft | Sundays at 10:00 AM PT
+            </span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-[#1f2421]">Homestead</h2>
+          <p class="text-sm sm:text-[15px] leading-relaxed text-[#28302b]">
+            A long-term survival build focused on caring for, shaping, and inhabiting a persistent world over time. Instead of strip-mining for quick progress or rushing to beat the game, every session asks what it takes to build with patience and leave the world more lived-in than we found it.
+          </p>
+        </div>
+        <div class="pt-5 mt-6 border-t border-[#e3dac6] flex justify-end">
+          <a
+            id="ytHomesteadLink"
+            href="https://www.youtube.com/@PresenciaGaming/playlists"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-[#3e7b5c] hover:bg-[#316349] text-white text-xs font-bold transition-colors"
+          >
+            Homestead Playlist &nearr;
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: PresenciaLocke -->
+      <article class="index-card rounded-2xl p-6 sm:p-7 pt-9 h-full flex flex-col justify-between border-l-4 rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-left-color: #567c96;">
+        <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #567c96;">
+              Acceptance
+            </span>
+            <span class="text-xs font-bold text-[#2b332e] bg-[#fdf2c4] border border-[#e3d18d] px-2.5 py-1 rounded-md">
+              Pok&eacute;mon FireRed Ultra | Wednesdays at 10:00 AM PT
+            </span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-[#1f2421]">PresenciaLocke</h2>
+          <p class="text-sm sm:text-[15px] leading-relaxed text-[#28302b]">
+            A Nuzlocke challenge run built around the Presencia Shift. We do not bench favorites by choice; we work within the Presencia Shift for who stays and who shifts, adapting our strategy on the fly when control is taken out of our hands.
+          </p>
+        </div>
+        <div class="pt-5 mt-6 border-t border-[#e3dac6] flex justify-end">
+          <a
+            id="ytPresenciaLockeLink"
+            href="https://www.youtube.com/@PresenciaGaming/playlists"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-[#567c96] hover:bg-[#43647a] text-white text-xs font-bold transition-colors"
+          >
+            PresenciaLocke Playlist &nearr;
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bottom Format Comparison Ruled Lined-Paper Card (.taped Only, NO Sub-Sentence, NO Bottom Comparison Note) -->
+    <div class="ruled-note rounded-2xl pt-2">
+      <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+      <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+      <div class="bg-[#243b2f] text-[#fbf9f3] px-6 py-4 rounded-t-xl border-b-2 border-[#17271f] text-center">
+        <h3 class="text-xl font-extrabold tracking-tight">What Makes Presencia Formats Different</h3>
+      </div>
+
+      <div class="divide-y divide-[#cbd5e1] rounded-b-2xl overflow-hidden">
+        <div class="hidden md:grid md:grid-cols-12 bg-[#f3ede0]/85 px-6 py-3 text-xs font-extrabold uppercase tracking-wider text-[#4a534d]">
+          <div class="col-span-3">Category</div>
+          <div class="col-span-4">Standard Gaming Videos</div>
+          <div class="col-span-5 text-[#243b2f]">Presencia Gaming</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Pacing</div>
+          <div class="md:col-span-4 text-[#4a534d]">Fast cuts, speedruns, and rushing the main objective</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Unhurried sessions where atmosphere and details have room to breathe</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start bg-[#faf6ec]/70">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Setbacks</div>
+          <div class="md:col-span-4 text-[#4a534d]">Resetting the save file or raging when things go wrong</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Keeping the loss, adapting to the shift, and playing forward</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Episode Structure</div>
+          <div class="md:col-span-4 text-[#4a534d]">Heavy reliance on episode numbers and prior lore</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Self-contained runs anchored around what is actually being built or tested</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start bg-[#faf6ec]/70">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Tone</div>
+          <div class="md:col-span-4 text-[#4a534d]">Loud hype cycles, clickbait reactions, or scripted lectures</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Grounded, observant commentary where gameplay leads and reflection follows</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PAGE 3: PLAY HUB & THE CLAW MACHINE                                   -->
+  <!-- ===================================================================== -->
+  <section id="viewPlay" class="hidden flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col items-center space-y-5">
+
+    <!-- Sub-Navigation Bar (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
+    <div class="w-full max-w-[740px] index-card rounded-2xl px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="slate-pin top-1/2 -translate-y-1/2 left-2.5"></div>
+      <div class="slate-pin top-1/2 -translate-y-1/2 right-2.5"></div>
+
+      <div class="pl-5 flex items-center gap-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#243b2f]">Play Hub</span>
+      </div>
+
+      <div class="pr-5 flex flex-wrap items-center gap-2" role="tablist" aria-label="Play Hub Games">
+        <button
+          type="button"
+          data-game="claw"
+          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#243b2f] text-[#fbf9f3] shadow-2xs cursor-pointer transition-colors"
+        >
+          The Claw Machine
+        </button>
+        <button
+          type="button"
+          data-game="coming-soon"
+          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#fdf2c4] hover:bg-[#f6e6a4] text-[#1f2421] border border-[#dfd092] cursor-pointer transition-colors"
+        >
+          More Field Games (Coming Soon)
+        </button>
+      </div>
+    </div>
+
+    <!-- Sub-View A: Claw Machine Framed Inside a Ruled Lined-Paper Poster Sheet (.pinned with Two 3D Slate Push Pins Only) -->
+    <div id="subGameClaw" class="w-full flex justify-center">
+      <div class="ruled-sheet rounded-2xl p-4 sm:p-6 pt-9 sm:pt-10 w-full max-w-[740px]">
+        <div class="slate-pin top-3 left-4"></div>
+        <div class="slate-pin top-3 right-4"></div>
+
+        <div class="arcade-stage">
+          <div class="arcade-cabinet">
+
+            <!-- Lit PRESENCIA ARCADE Marquee Header -->
             <div class="arcade-marquee">
-              <div class="flex items-center gap-3">
-                <div class="light-bank" id="arcade-light-bank" aria-hidden="true">
-                  <span class="arcade-bulb" style="--bulb-color: #64748b;"></span>
-                  <span class="arcade-bulb" style="--bulb-color: #64748b;"></span>
-                  <span class="arcade-bulb" style="--bulb-color: #64748b;"></span>
-                </div>
-                <span class="font-display text-xl sm:text-2xl font-bold tracking-wider text-[#fef3c7] arcade-title-glow">
-                  PRESENCIA ARCADE
-                </span>
+              <div class="marquee-bulb-bank" id="marqueeBulbBank" aria-hidden="true">
+                <span class="marquee-bulb idle"></span>
+                <span class="marquee-bulb idle"></span>
+                <span class="marquee-bulb idle"></span>
               </div>
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#d9b25f] bg-[#101b14] px-3 py-1 rounded-full border border-[#d9b25f]/40">
-                Free Play
-              </span>
+              <h1 class="marquee-title-text">
+                PRESENCIA ARCADE
+              </h1>
+              <button
+                id="muteBtn"
+                type="button"
+                class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] cursor-pointer z-10"
+                title="Toggle arcade sound effects"
+              >
+                Sound: On
+              </button>
             </div>
 
-            <!-- Glass Chamber -->
-            <div class="arcade-glass" id="arcade-glass">
-              <div class="gantry-bar"></div>
+            <!-- Glass Display Window with Subtle Diagonal Glass Reflection -->
+            <div class="glass-bezel">
+              <div class="viewport-wrap" id="viewportWrap">
+                <div class="glass-glare"></div>
+                <canvas id="clawCanvas"></canvas>
 
-              <!-- Moving Claw Assembly -->
-              <div class="claw-carriage" id="claw-carriage">
-                <div class="claw-motor"></div>
-                <div class="claw-cable" id="claw-cable"></div>
-                <div class="claw-head" id="claw-head">
-                  <div class="claw-hub"></div>
-                  <div class="claw-arm-left"></div>
-                  <div class="claw-arm-right"></div>
+                <!-- Taped Ruled Lined-Paper Prompt Card Overlay (.taped Only, Zero Pins) -->
+                <div class="note-overlay" id="noteOverlay" role="dialog" aria-modal="true" aria-labelledby="noteWord">
+                  <div class="note-card ruled-note">
+                    <div class="masking-tape w-14 h-3.5 -top-2 left-5 -rotate-3"></div>
+                    <div class="masking-tape w-14 h-3.5 -top-2 right-5 rotate-3"></div>
+
+                    <div class="mb-3">
+                      <span
+                        id="noteWord"
+                        class="inline-block text-xs font-extrabold tracking-[0.14em] uppercase px-3.5 py-1 rounded-full text-white shadow-2xs"
+                      >
+                        Sense
+                      </span>
+                    </div>
+                    <p id="noteBody" class="text-[16.5px] leading-relaxed text-[#1f2421] mb-5">
+                      Prompt appears here.
+                    </p>
+                    <button
+                      id="closeNoteBtn"
+                      type="button"
+                      class="bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg cursor-pointer transition-colors"
+                    >
+                      Drop Another
+                    </button>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <!-- 24 Capsules Rendered by JS -->
-              <div id="capsule-pit"></div>
+            <!-- Slanted Control Deck with Green Arcade Joystick, Holdable Left/Right Buttons, and Red DROP CLAW Button -->
+            <div class="arcade-deck">
+              <div class="flex items-center gap-3">
+                <div class="joystick-assembly hidden sm:flex" aria-hidden="true">
+                  <div class="joystick-shaft" id="joystickShaft">
+                    <div class="joystick-ball"></div>
+                  </div>
+                </div>
 
-              <!-- Drawn Note Overlay Card (TAPED ONLY, RULED PAPER) -->
-              <div id="drawn-overlay" class="hidden absolute inset-0 bg-[#132018]/75 backdrop-blur-[2px] z-30 flex items-center justify-center p-4">
-                <div id="drawn-card" class="taped lined-paper rounded-xl max-w-md w-full p-6 pt-8 text-center border-2 border-[#213729]" style="--tape-color: rgba(235, 224, 184, 0.9);">
-                  <span id="drawn-badge" class="inline-block text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-3 text-[#111827]">
-                    Sense
-                  </span>
-                  <p id="drawn-prompt" class="font-display text-lg sm:text-xl font-bold text-[#1f2421] leading-snug mb-5">
-                    What is your body noticing about this place before you think about it?
-                  </p>
-                  <button type="button" id="btn-play-again" class="bg-[#213729] text-white text-xs font-bold px-5 py-2.5 rounded-lg hover:bg-[#2f4d3a] transition">
-                    Return to Machine
+                <div class="flex items-center gap-2">
+                  <button
+                    id="leftBtn"
+                    type="button"
+                    aria-label="Move Left"
+                    class="arcade-btn-nav"
+                  >
+                    &#9664; Left
+                  </button>
+                  <button
+                    id="rightBtn"
+                    type="button"
+                    aria-label="Move Right"
+                    class="arcade-btn-nav"
+                  >
+                    Right &#9654;
                   </button>
                 </div>
               </div>
-            </div>
 
-            <!-- Control Deck -->
-            <div class="arcade-deck">
-              <div class="flex items-center gap-3">
-                <div class="joystick-base" aria-hidden="true">
-                  <div class="joystick-ball" id="joystick-ball"></div>
-                </div>
-                <div class="text-xs text-[#cbd5e1] leading-tight">
-                  <div class="font-bold text-white">Click any capsule</div>
-                  <div>or press Drop Claw</div>
-                </div>
+              <div id="statusText" class="hidden md:block text-xs font-semibold text-[#fbf9f4] text-center">
+                Aim &amp; Drop
               </div>
 
-              <button type="button" id="btn-drop-claw" class="arcade-btn px-6 py-3 rounded-full text-sm uppercase tracking-wider">
+              <button
+                id="dropBtn"
+                type="button"
+                class="arcade-btn-drop"
+              >
                 Drop Claw
               </button>
-
-              <!-- Unlabeled Prize Chute -->
-              <div class="prize-chute" aria-hidden="true"></div>
             </div>
 
           </div>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <!-- SUB-VIEW B: MORE FIELD GAMES (COMING SOON) -->
-      <section id="subtab-more" class="subtab-view hidden">
-        <div class="taped lined-paper rounded-xl p-8 pl-14 max-w-2xl mx-auto text-center" style="--tape-color: rgba(235, 224, 184, 0.85);">
-          <h3 class="font-display text-2xl font-bold text-[#213729] mb-2">
-            More Field Games in the Works
-          </h3>
-          <p class="text-[15.5px] leading-[28px] text-[#28302c]">
-            Additional browser prototypes built around everyday awareness, place-based challenges, and the six Presencia capacities will live right here as they are ready to play.
-          </p>
+    <!-- Sub-View B: Taped Sticky Note for Future Field Games (.taped Only, Zero Pins) -->
+    <div id="subGameComingSoon" class="hidden w-full max-w-[740px]">
+      <div class="sticky-yellow rounded-2xl p-8 pt-9 text-center space-y-4">
+        <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+        <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1f2421]">More Field Games (Coming Soon)</h2>
+        <p class="text-sm sm:text-[15px] leading-relaxed text-[#2d3228] max-w-lg mx-auto">
+          This spot on the board is saved for future playable prototypes and small tabletop experiments. Check back as new field games get pinned here.
+        </p>
+        <div class="pt-2">
+          <button
+            id="backToClawBtn"
+            type="button"
+            class="px-5 py-2.5 rounded-xl bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] text-xs sm:text-sm font-bold transition-colors cursor-pointer"
+          >
+            &larr; Back to The Claw Machine
+          </button>
         </div>
-      </section>
+      </div>
+    </div>
 
-    </main>
-
-  </div>
+  </section>
 
   <script>
-    // =========================================================
-    // 1. CENTRALIZED YOUTUBE LINKS
-    // =========================================================
+    // =========================================================================
+    // YOUTUBE & SERIES LINKS (Edit URLs here to update all buttons)
+    // =========================================================================
     const PRESENCIA_LINKS = {
       channel: "https://www.youtube.com/@PresenciaGaming",
-      homesteadPlaylist: "https://www.youtube.com/@PresenciaGaming/playlists",
-      presenciaLockePlaylist: "https://www.youtube.com/@PresenciaGaming/playlists"
+      homestead: "https://www.youtube.com/@PresenciaGaming/playlists",
+      presenciaLocke: "https://www.youtube.com/@PresenciaGaming/playlists"
     };
 
-    document.getElementById("link-channel").href = PRESENCIA_LINKS.channel;
-    document.getElementById("link-homestead").href = PRESENCIA_LINKS.homesteadPlaylist;
-    document.getElementById("link-presencialocke").href = PRESENCIA_LINKS.presenciaLockePlaylist;
-    document.getElementById("card-link-homestead").href = PRESENCIA_LINKS.homesteadPlaylist;
-    document.getElementById("card-link-presencialocke").href = PRESENCIA_LINKS.presenciaLockePlaylist;
-
-    // =========================================================
-    // 2. MAIN PAGE NAVIGATION & PLAY HUB SUB-TABS
-    // =========================================================
-    const navButtons = document.querySelectorAll(".nav-pill");
-    const pageViews = document.querySelectorAll(".page-view");
-
-    navButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetId = btn.getAttribute("data-page");
-        navButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        pageViews.forEach((view) => {
-          view.classList.toggle("active", view.id === targetId);
-        });
-      });
-    });
-
-    const subtabButtons = document.querySelectorAll(".subtab-pill");
-    const subtabViews = document.querySelectorAll(".subtab-view");
-
-    subtabButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetId = btn.getAttribute("data-subtab");
-        subtabButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        subtabViews.forEach((view) => {
-          if (view.id === targetId) {
-            view.classList.remove("hidden");
-            view.classList.add("block");
-          } else {
-            view.classList.add("hidden");
-            view.classList.remove("block");
-          }
-        });
-      });
-    });
-
-    // =========================================================
-    // 3. CLAW MACHINE DATA (24 CAPSULES = 2 PER CAPACITY WORD)
-    // =========================================================
+    // =========================================================================
+    // PRESENCIA CAPSULE NOTES (24 Place-Aware Prompts: 2 per Single Word)
+    // Valid words: "Sense", "Feel", "Notice", "Find", "Wonder", "Imagine",
+    //              "Engage", "Try", "Connect", "Share", "Reflect", "Question"
+    // =========================================================================
     const PRESENCIA_NOTES = [
-      { word: "Sense", color: "#52b788", prompt: "What is your body noticing about this place before you even think about it?" },
-      { word: "Sense", color: "#52b788", prompt: "Close your eyes for five seconds. What sound or sensation becomes clearest?" },
-      { word: "Feel", color: "#74c69d", prompt: "Pick something within reach and predict how its texture feels before touching it." },
-      { word: "Feel", color: "#74c69d", prompt: "Find an object nearby whose texture or weight matches your current mood." },
+      // Sense
+      { word: "Sense", text: "What is your body noticing about this place before you even start thinking about it?" },
+      { word: "Sense", text: "What sensation have you been tuning out since you arrived here?" },
 
-      { word: "Notice", color: "#4ea8de", prompt: "What has been happening in the background here that you stopped noticing?" },
-      { word: "Notice", color: "#4ea8de", prompt: "Look at the edges of your vision. What detail sits right outside your usual focus?" },
-      { word: "Find", color: "#72efdd", prompt: "Find three clues about someone or something that was in this spot before you." },
-      { word: "Find", color: "#72efdd", prompt: "Find the smallest deliberate detail in the room or space around you." },
+      // Feel
+      { word: "Feel", text: "Predict how something within arm's reach feels before touching it. Touch it. Were you right?" },
+      { word: "Feel", text: "Find three different textures nearby and describe each one. Which one is hardest to put into words?" },
 
-      { word: "Wonder", color: "#f9c74f", prompt: "Look around and name one ordinary thing you do not actually know how it works." },
-      { word: "Wonder", color: "#f9c74f", prompt: "What object nearby traveled the farthest to end up right here?" },
-      { word: "Imagine", color: "#f8961e", prompt: "Invent a completely ridiculous reason why something nearby was placed there." },
-      { word: "Imagine", color: "#f8961e", prompt: "Picture this exact spot ten years ago. What was different, and what stayed?" },
+      // Notice
+      { word: "Notice", text: "What is quietly helping this place function right now that you usually walk past?" },
+      { word: "Notice", text: "What around you reveals how time has passed in this space?" },
 
-      { word: "Engage", color: "#f3722c", prompt: "What are you already participating in right now without thinking about it?" },
-      { word: "Engage", color: "#f3722c", prompt: "What is this space offering right now that you have not interacted with yet?" },
-      { word: "Try", color: "#f9844a", prompt: "Look at something ordinary from an angle you never use. What changes?" },
-      { word: "Try", color: "#f9844a", prompt: "Pick two unrelated things in sight and find an unexpected connection between them." },
+      // Find
+      { word: "Find", text: "Find three small clues about something that was here before you arrived." },
+      { word: "Find", text: "Find the smallest deliberate detail someone built or placed near where you are sitting." },
 
-      { word: "Connect", color: "#f94144", prompt: "If someone else is nearby, notice their pace or energy without judging it." },
-      { word: "Connect", color: "#f94144", prompt: "Think of one person who helped make this space or moment possible today." },
-      { word: "Share", color: "#ff758f", prompt: "Describe an object you can see right now without saying its name." },
-      { word: "Share", color: "#ff758f", prompt: "Tell someone near you—or jot down—one small thing you noticed in the last minute." },
+      // Wonder
+      { word: "Wonder", text: "Why might something nearby have been designed with that exact shape, weight, or material?" },
+      { word: "Wonder", text: "What nearby has traveled the farthest to end up in this exact spot?" },
 
-      { word: "Reflect", color: "#9d4edd", prompt: "What did the last hour teach you about where your attention naturally drifts?" },
-      { word: "Reflect", color: "#9d4edd", prompt: "Where did you feel rushed today, and was that urgency actually yours?" },
-      { word: "Question", color: "#c77dff", prompt: "What unwritten rule are you following in this space right now?" },
-      { word: "Question", color: "#c77dff", prompt: "How can you meet this exact moment without trying to fix or rush it?" }
+      // Imagine
+      { word: "Imagine", text: "Invent a completely ridiculous reason something nearby exists." },
+      { word: "Imagine", text: "Imagine this exact spot one day ago, one year ago, and ten years ago. What changed?" },
+
+      // Engage
+      { word: "Engage", text: "What are you already participating in right now without thinking about it?" },
+      { word: "Engage", text: "What is this place offering right now that you have not engaged with yet?" },
+
+      // Try
+      { word: "Try", text: "Look at something nearby from an angle you never normally use. What looks different?" },
+      { word: "Try", text: "Study your immediate area, close your eyes for ten seconds, and see what jumps out when you open them." },
+
+      // Connect
+      { word: "Connect", text: "Choose two things you can see nearby and find an unexpected connection between them." },
+      { word: "Connect", text: "Think of the next person you will speak to today and listen for what they actually mean, not just your reply." },
+
+      // Share
+      { word: "Share", text: "Find something in this space that someone used before you and someone else will use after you leave." },
+      { word: "Share", text: "Spot one small detail in this room worth pointing out to someone else later." },
+
+      // Reflect
+      { word: "Reflect", text: "Notice what grabbed your attention first when you sat down here, and why." },
+      { word: "Reflect", text: "Name one detail about this exact moment that will not be the same an hour from now." },
+
+      // Question
+      { word: "Question", text: "What question does this place make you want to ask?" },
+      { word: "Question", text: "What would you normally expect to see in a place like this that is missing right now?" }
     ];
 
-    const pit = document.getElementById("capsule-pit");
-    const glass = document.getElementById("arcade-glass");
-    const carriage = document.getElementById("claw-carriage");
-    const cable = document.getElementById("claw-cable");
-    const clawHead = document.getElementById("claw-head");
-    const joystickBall = document.getElementById("joystick-ball");
-    const btnDrop = document.getElementById("btn-drop-claw");
-    const overlay = document.getElementById("drawn-overlay");
-    const drawnBadge = document.getElementById("drawn-badge");
-    const drawnPrompt = document.getElementById("drawn-prompt");
-    const btnPlayAgain = document.getElementById("btn-play-again");
-    const bulbs = document.querySelectorAll(".arcade-bulb");
+    // =========================================================================
+    // 12 DISTINCT CAPSULE COLORS (1 Color per Single Capacity Word)
+    // =========================================================================
+    const WORD_STYLES = {
+      Sense:    { fill: "#2e7d5b", cap: "#d5ebe0", stroke: "#1d523b" },
+      Feel:     { fill: "#4ea87a", cap: "#def2e7", stroke: "#317050" },
+      Notice:   { fill: "#3b6e9c", cap: "#d7e6f2", stroke: "#244766" },
+      Find:     { fill: "#669bc9", cap: "#e2eef8", stroke: "#41688a" },
+      Wonder:   { fill: "#d4942a", cap: "#f7ebd3", stroke: "#8f6118" },
+      Imagine:  { fill: "#ecc05c", cap: "#fbf3df", stroke: "#a38133" },
+      Engage:   { fill: "#c96534", cap: "#f6e0d5", stroke: "#87411f" },
+      Try:      { fill: "#e68a57", cap: "#fae9df", stroke: "#9e5934" },
+      Connect:  { fill: "#b84642", cap: "#f4d8d7", stroke: "#7d2c29" },
+      Share:    { fill: "#db726e", cap: "#f9e3e2", stroke: "#964845" },
+      Reflect:  { fill: "#6b528a", cap: "#e4dced", stroke: "#46345c" },
+      Question: { fill: "#957ab5", cap: "#eee8f5", stroke: "#624e7a" }
+    };
 
-    let isGrabbing = false;
-    let capsuleElements = [];
+    const WORD_KEYS = Object.keys(WORD_STYLES);
 
-    function setArcadeLights(color, flashing) {
-      bulbs.forEach((bulb) => {
-        bulb.style.setProperty("--bulb-color", color || "#64748b");
-        if (flashing) {
-          bulb.classList.add("flashing");
+    // Bind YouTube Links
+    document.getElementById("ytChannelLink").href = PRESENCIA_LINKS.channel;
+    document.getElementById("ytHomesteadTopLink").href = PRESENCIA_LINKS.homestead;
+    document.getElementById("ytPresenciaLockeTopLink").href = PRESENCIA_LINKS.presenciaLocke;
+    document.getElementById("ytHomesteadLink").href = PRESENCIA_LINKS.homestead;
+    document.getElementById("ytPresenciaLockeLink").href = PRESENCIA_LINKS.presenciaLocke;
+
+    // =========================================================================
+    // 3-TAB NAVIGATION & PLAY HUB SUB-SWITCHER
+    // =========================================================================
+    const navButtons = {
+      home: document.getElementById("navHome"),
+      series: document.getElementById("navSeries"),
+      play: document.getElementById("navPlay")
+    };
+
+    const views = {
+      home: document.getElementById("viewHome"),
+      series: document.getElementById("viewSeries"),
+      play: document.getElementById("viewPlay")
+    };
+
+    let activeView = "home";
+    let activeSubGame = "claw";
+
+    function switchView(target) {
+      activeView = target;
+
+      Object.keys(views).forEach((key) => {
+        if (key === target) {
+          views[key].classList.remove("hidden");
+          navButtons[key].classList.add("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          navButtons[key].classList.remove("text-[#3c4540]");
         } else {
-          bulb.classList.remove("flashing");
+          views[key].classList.add("hidden");
+          navButtons[key].classList.remove("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          navButtons[key].classList.add("text-[#3c4540]");
         }
       });
-    }
 
-    function renderCapsules() {
-      pit.innerHTML = "";
-      capsuleElements = [];
-
-      const shuffled = [...PRESENCIA_NOTES].sort(() => Math.random() - 0.5);
-      const cols = 6;
-      const rows = 4;
-
-      shuffled.forEach((item, index) => {
-        const row = Math.floor(index / cols);
-        const col = index % cols;
-
-        const el = document.createElement("button");
-        el.type = "button";
-        el.className = "capsule";
-        el.style.backgroundColor = item.color;
-
-        const leftPercent = 6 + col * 14.8 + (row % 2 === 1 ? 3 : 0);
-        const bottomPx = 12 + (rows - 1 - row) * 44 + ((col % 2) * 6);
-        const rot = ((index * 19) % 24) - 12;
-
-        el.style.left = `${leftPercent}%`;
-        el.style.bottom = `${bottomPx}px`;
-        el.style.zIndex = `${10 - row}`;
-        el.style.transform = `rotate(${rot}deg)`;
-
-        const label = document.createElement("span");
-        label.className = "capsule-label";
-        label.textContent = item.word;
-        el.appendChild(label);
-
-        el.addEventListener("click", () => {
-          if (!isGrabbing) runClawSequence(el, item);
+      if (target === "play" && activeSubGame === "claw") {
+        requestAnimationFrame(() => {
+          resizeCanvas();
+          layoutCapsules();
         });
+      }
+    }
 
-        pit.appendChild(el);
-        capsuleElements.push({ el, item });
+    function switchSubGame(gameKey) {
+      activeSubGame = gameKey;
+      const subClaw = document.getElementById("subGameClaw");
+      const subSoon = document.getElementById("subGameComingSoon");
+      const subBtns = document.querySelectorAll(".play-sub-btn");
+
+      subBtns.forEach((btn) => {
+        if (btn.dataset.game === gameKey) {
+          btn.classList.add("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          btn.classList.remove("bg-[#fdf2c4]", "text-[#1f2421]");
+        } else {
+          btn.classList.remove("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          btn.classList.add("bg-[#fdf2c4]", "text-[#1f2421]");
+        }
       });
+
+      if (gameKey === "claw") {
+        subClaw.classList.remove("hidden");
+        subSoon.classList.add("hidden");
+        requestAnimationFrame(() => {
+          resizeCanvas();
+          layoutCapsules();
+        });
+      } else {
+        subClaw.classList.add("hidden");
+        subSoon.classList.remove("hidden");
+      }
     }
 
-    function runClawSequence(targetEl, item) {
-      if (isGrabbing) return;
-      isGrabbing = true;
-      btnDrop.disabled = true;
+    navButtons.home.addEventListener("click", () => switchView("home"));
+    navButtons.series.addEventListener("click", () => switchView("series"));
+    navButtons.play.addEventListener("click", () => switchView("play"));
 
-      const glassRect = glass.getBoundingClientRect();
-      const capRect = targetEl.getBoundingClientRect();
+    document.querySelectorAll(".play-sub-btn").forEach((btn) => {
+      btn.addEventListener("click", () => switchSubGame(btn.dataset.game));
+    });
 
-      const targetCenterX = capRect.left - glassRect.left + capRect.width / 2;
-      const targetTopY = capRect.top - glassRect.top;
+    document.getElementById("backToClawBtn").addEventListener("click", () => switchSubGame("claw"));
 
-      const tilt = targetCenterX < glassRect.width / 2 ? -10 : 10;
-      joystickBall.style.transform = `translate(${tilt}px, -3px)`;
+    document.getElementById("ctaToSeries").addEventListener("click", () => {
+      switchView("series");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-      // 1. Move carriage horizontally
-      carriage.style.transition = "left 0.55s ease-in-out";
-      carriage.style.left = `${targetCenterX}px`;
+    document.getElementById("ctaHeroToPlay").addEventListener("click", () => {
+      switchView("play");
+      switchSubGame("claw");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-      // 2. Lower cable
-      setTimeout(() => {
-        joystickBall.style.transform = "translate(0, 0)";
-        const dropHeight = Math.max(30, targetTopY - 34);
-        cable.style.height = `${dropHeight}px`;
-      }, 580);
+    document.getElementById("ctaToPlay").addEventListener("click", () => {
+      switchView("play");
+      switchSubGame("claw");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-      // 3. Close claw & flash arcade lights in the grabbed ball's exact color
-      setTimeout(() => {
-        clawHead.classList.add("claw-closed");
-        setArcadeLights(item.color, true);
-      }, 1150);
+    // =========================================================================
+    // GENTLE WEB AUDIO API SYNTHESIZED SOUND EFFECTS
+    // =========================================================================
+    let audioCtx = null;
+    let isMuted = false;
 
-      // 4. Lift capsule up
-      setTimeout(() => {
-        cable.style.height = "22px";
-        targetEl.style.transition = "bottom 0.55s cubic-bezier(0.34, 1.15, 0.64, 1), left 0.55s ease";
-        targetEl.style.bottom = "265px";
-        targetEl.style.zIndex = "20";
-      }, 1420);
+    const muteBtn = document.getElementById("muteBtn");
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      muteBtn.textContent = isMuted ? "Sound: Off" : "Sound: On";
+    });
 
-      // 5. Carry to left chute
-      setTimeout(() => {
-        carriage.style.left = "14%";
-        targetEl.style.left = "9%";
-      }, 2020);
-
-      // 6. Release into chute & reveal note
-      setTimeout(() => {
-        clawHead.classList.remove("claw-closed");
-        targetEl.style.transition = "bottom 0.35s ease-in, opacity 0.3s ease";
-        targetEl.style.bottom = "12px";
-        targetEl.style.opacity = "0";
-      }, 2600);
-
-      setTimeout(() => {
-        drawnBadge.textContent = item.word;
-        drawnBadge.style.backgroundColor = item.color;
-        drawnPrompt.textContent = item.prompt;
-        overlay.classList.remove("hidden");
-
-        carriage.style.left = "50%";
-        isGrabbing = false;
-        btnDrop.disabled = false;
-      }, 3000);
+    function playTone(freq, type, duration, vol = 0.055, slideTo = null) {
+      if (isMuted) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        if (slideTo) {
+          osc.frequency.exponentialRampToValueAtTime(slideTo, audioCtx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
     }
 
-    btnDrop.addEventListener("click", () => {
-      if (isGrabbing || capsuleElements.length === 0) return;
-      const visible = capsuleElements.filter((c) => c.el.style.opacity !== "0");
-      const pool = visible.length > 0 ? visible : capsuleElements;
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      runClawSequence(pick.el, pick.item);
+    function sfxMove() { playTone(220, "sine", 0.05, 0.022, 250); }
+    function sfxDrop() { playTone(315, "triangle", 0.34, 0.048, 145); }
+    function sfxGrab() { playTone(280, "sine", 0.14, 0.055, 420); }
+    function sfxWin() {
+      playTone(392, "sine", 0.22, 0.055);
+      setTimeout(() => playTone(523.25, "sine", 0.34, 0.055), 130);
+    }
+
+    // =========================================================================
+    // CLAW MACHINE CANVAS & PHYSICS ENGINE (24 Capsules in 3 Layered Rows)
+    // =========================================================================
+    const canvas = document.getElementById("clawCanvas");
+    const ctx = canvas.getContext("2d");
+    const wrap = document.getElementById("viewportWrap");
+    const joystickShaft = document.getElementById("joystickShaft");
+
+    let W = 640;
+    let H = 415;
+    const CHUTE_WIDTH = 90;
+    const CAPSULE_R = 20;
+
+    function resizeCanvas() {
+      const rect = wrap.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      W = rect.width;
+      H = rect.height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    const claw = {
+      x: 210,
+      y: 44,
+      minX: CHUTE_WIDTH + 34,
+      maxX: W - 38,
+      ropeLength: 24,
+      baseRope: 24,
+      jawAngle: 0.48,
+      state: "IDLE", // IDLE, DROPPING, CLOSING, RISING, RETURNING, RELEASING
+      grabbedCapsule: null,
+      timer: 0
+    };
+
+    let capsules = [];
+
+    function layoutCapsules() {
+      claw.minX = CHUTE_WIDTH + 34;
+      claw.maxX = Math.max(claw.minX + 60, W - 38);
+      if (claw.x < claw.minX) claw.x = claw.minX;
+      if (claw.x > claw.maxX) claw.x = claw.maxX;
+
+      // 2 capsules per each of the 12 single capacity words = 24 capsules
+      const pool = [];
+      WORD_KEYS.forEach((w) => {
+        pool.push(w, w);
+      });
+
+      // Shuffle pool
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const playLeft = CHUTE_WIDTH + 24;
+      const playRight = Math.max(playLeft + 140, W - 24);
+      const span = playRight - playLeft;
+
+      // 3 layered rows: Row 0 (9 balls), Row 1 (8 balls), Row 2 (7 balls) = 24 balls
+      const rowCounts = [9, 8, 7];
+      const built = [];
+      let cursor = 0;
+
+      for (let r = 0; r < rowCounts.length; r++) {
+        const count = rowCounts[r];
+        const step = span / count;
+        const rowY = H - CAPSULE_R - 6 - r * (CAPSULE_R * 1.58);
+
+        for (let c = 0; c < count; c++) {
+          const word = pool[cursor];
+          const jitterX = Math.sin((cursor + 1) * 3.7) * 4.5;
+          const jitterY = Math.cos((cursor + 1) * 2.9) * 2;
+          const px = playLeft + step * (c + 0.5) + jitterX;
+          const py = rowY + jitterY;
+
+          built.push({
+            id: cursor,
+            word,
+            row: r,
+            x: px,
+            y: py,
+            homeX: px,
+            homeY: py,
+            angle: Math.sin((cursor + 1) * 2.1) * 0.52,
+            vy: 0
+          });
+          cursor++;
+        }
+      }
+
+      capsules = built;
+    }
+
+    resizeCanvas();
+    layoutCapsules();
+
+    window.addEventListener("resize", () => {
+      if (activeView === "play" && activeSubGame === "claw") {
+        resizeCanvas();
+        layoutCapsules();
+      }
     });
 
-    btnPlayAgain.addEventListener("click", () => {
-      overlay.classList.add("hidden");
-      setArcadeLights("#64748b", false);
-      renderCapsules();
+    // Keyboard & Holdable Arcade Button Controls
+    const keys = { left: false, right: false };
+    let moveCooldown = 0;
+
+    function updateJoystickVisual() {
+      if (!joystickShaft) return;
+      if (keys.left && !keys.right) {
+        joystickShaft.style.transform = "rotate(-22deg)";
+      } else if (keys.right && !keys.left) {
+        joystickShaft.style.transform = "rotate(22deg)";
+      } else {
+        joystickShaft.style.transform = "rotate(0deg)";
+      }
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (activeView !== "play" || activeSubGame !== "claw") return;
+      if (document.getElementById("noteOverlay").classList.contains("visible")) return;
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keys.left = true;
+        updateJoystickVisual();
+      }
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keys.right = true;
+        updateJoystickVisual();
+      }
+      if ((e.key === " " || e.key === "Enter") && claw.state === "IDLE") {
+        e.preventDefault();
+        triggerDrop();
+      }
     });
 
-    renderCapsules();
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keys.left = false;
+        updateJoystickVisual();
+      }
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keys.right = false;
+        updateJoystickVisual();
+      }
+    });
+
+    const leftBtn = document.getElementById("leftBtn");
+    const rightBtn = document.getElementById("rightBtn");
+    const dropBtn = document.getElementById("dropBtn");
+    const statusText = document.getElementById("statusText");
+    const marqueeBulbs = document.querySelectorAll("#marqueeBulbBank .marquee-bulb");
+
+    function setMarqueeLights(wordKey) {
+      if (!marqueeBulbs.length) return;
+      if (!wordKey) {
+        marqueeBulbs.forEach((bulb) => {
+          bulb.classList.remove("flashing");
+          bulb.classList.add("idle");
+          bulb.style.backgroundColor = "#d4a234";
+          bulb.style.boxShadow = "0 0 5px rgba(212, 162, 52, 0.55)";
+        });
+      } else {
+        const style = WORD_STYLES[wordKey] || WORD_STYLES.Sense;
+        marqueeBulbs.forEach((bulb) => {
+          bulb.classList.remove("idle");
+          bulb.classList.add("flashing");
+          bulb.style.backgroundColor = style.fill;
+          bulb.style.boxShadow = `0 0 11px ${style.fill}, 0 0 20px ${style.fill}`;
+        });
+      }
+    }
+
+    function bindHold(btn, dir) {
+      const start = (e) => {
+        e.preventDefault();
+        keys[dir] = true;
+        updateJoystickVisual();
+      };
+      const end = () => {
+        keys[dir] = false;
+        updateJoystickVisual();
+      };
+      btn.addEventListener("mousedown", start);
+      btn.addEventListener("touchstart", start, { passive: false });
+      window.addEventListener("mouseup", end);
+      window.addEventListener("touchend", end);
+    }
+    bindHold(leftBtn, "left");
+    bindHold(rightBtn, "right");
+
+    dropBtn.addEventListener("click", () => {
+      if (claw.state === "IDLE") triggerDrop();
+    });
+
+    function setControlsDisabled(disabled) {
+      leftBtn.disabled = disabled;
+      rightBtn.disabled = disabled;
+      dropBtn.disabled = disabled;
+    }
+
+    function triggerDrop() {
+      if (claw.state !== "IDLE") return;
+      claw.state = "DROPPING";
+      setControlsDisabled(true);
+      statusText.textContent = "Dropping...";
+      sfxDrop();
+    }
+
+    function showReminder(wordKey) {
+      const matching = PRESENCIA_NOTES.filter((n) => n.word === wordKey);
+      const pool = matching.length > 0 ? matching : PRESENCIA_NOTES;
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      const style = WORD_STYLES[wordKey] || WORD_STYLES.Sense;
+
+      const badge = document.getElementById("noteWord");
+      badge.textContent = wordKey;
+      badge.style.backgroundColor = style.fill;
+      document.getElementById("noteBody").textContent = chosen.text;
+      document.getElementById("noteOverlay").classList.add("visible");
+      sfxWin();
+    }
+
+    document.getElementById("closeNoteBtn").addEventListener("click", () => {
+      document.getElementById("noteOverlay").classList.remove("visible");
+      if (claw.grabbedCapsule) {
+        const cap = claw.grabbedCapsule;
+        cap.x = cap.homeX;
+        cap.y = cap.homeY;
+        claw.grabbedCapsule = null;
+      }
+      setMarqueeLights(null);
+      claw.state = "IDLE";
+      setControlsDisabled(false);
+      statusText.textContent = "Aim & Drop";
+    });
+
+    // Physics Loop
+    function update() {
+      if (activeView !== "play" || activeSubGame !== "claw") return;
+      const clawTipY = claw.y + claw.ropeLength + 24;
+
+      if (claw.state === "IDLE") {
+        let moved = false;
+        if (keys.left && claw.x > claw.minX) {
+          claw.x = Math.max(claw.minX, claw.x - 3.6);
+          moved = true;
+        }
+        if (keys.right && claw.x < claw.maxX) {
+          claw.x = Math.min(claw.maxX, claw.x + 3.6);
+          moved = true;
+        }
+        if (moved) {
+          moveCooldown++;
+          if (moveCooldown % 9 === 0) sfxMove();
+        }
+        claw.jawAngle += (0.48 - claw.jawAngle) * 0.15;
+      } else if (claw.state === "DROPPING") {
+        claw.ropeLength += 4.3;
+        let hit = null;
+        for (let i = capsules.length - 1; i >= 0; i--) {
+          const cap = capsules[i];
+          const dx = Math.abs(cap.x - claw.x);
+          const dy = Math.abs(cap.y - clawTipY);
+          if (dx < CAPSULE_R * 0.92 && dy < CAPSULE_R * 0.85) {
+            hit = cap;
+            break;
+          }
+        }
+        if (hit || clawTipY >= H - 14) {
+          claw.grabbedCapsule = hit;
+          claw.state = "CLOSING";
+          claw.timer = 0;
+          if (hit) {
+            sfxGrab();
+            setMarqueeLights(hit.word);
+          }
+        }
+      } else if (claw.state === "CLOSING") {
+        claw.jawAngle += (0.14 - claw.jawAngle) * 0.22;
+        claw.timer++;
+        if (claw.timer > 18) {
+          claw.state = "RISING";
+          statusText.textContent = claw.grabbedCapsule ? "Lifting..." : "Missed";
+        }
+      } else if (claw.state === "RISING") {
+        claw.ropeLength -= 3.9;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.x = claw.x;
+          claw.grabbedCapsule.y = claw.y + claw.ropeLength + 25;
+        }
+        if (claw.ropeLength <= claw.baseRope) {
+          claw.ropeLength = claw.baseRope;
+          if (claw.grabbedCapsule) {
+            claw.state = "RETURNING";
+            statusText.textContent = "To Chute...";
+          } else {
+            claw.state = "IDLE";
+            setControlsDisabled(false);
+            statusText.textContent = "Aim & Drop";
+          }
+        }
+      } else if (claw.state === "RETURNING") {
+        const chuteCenter = CHUTE_WIDTH / 2;
+        claw.x += (chuteCenter - claw.x) * 0.085;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.x = claw.x;
+          claw.grabbedCapsule.y = claw.y + claw.ropeLength + 25;
+        }
+        if (Math.abs(claw.x - chuteCenter) < 3) {
+          claw.x = chuteCenter;
+          claw.state = "RELEASING";
+          claw.timer = 0;
+        }
+      } else if (claw.state === "RELEASING") {
+        claw.jawAngle += (0.55 - claw.jawAngle) * 0.2;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.vy += 0.68;
+          claw.grabbedCapsule.y += claw.grabbedCapsule.vy;
+        }
+        claw.timer++;
+        if (claw.timer > 24) {
+          const wonWord = claw.grabbedCapsule ? claw.grabbedCapsule.word : "Sense";
+          if (claw.grabbedCapsule) claw.grabbedCapsule.vy = 0;
+          claw.x = claw.minX + 42;
+          claw.state = "IDLE";
+          showReminder(wonWord);
+        }
+      }
+    }
+
+    // Render Loop
+    function draw() {
+      if (activeView !== "play" || activeSubGame !== "claw") return;
+      ctx.clearRect(0, 0, W, H);
+
+      // Warm Parchment Interior Cabinet Backdrop (#fbf9f4)
+      ctx.fillStyle = "#fbf9f4";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = "rgba(170, 158, 138, 0.2)";
+      ctx.lineWidth = 1;
+      for (let gx = 0; gx < W; gx += 40) {
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, H);
+        ctx.stroke();
+      }
+      for (let gy = 0; gy < H; gy += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(W, gy);
+        ctx.stroke();
+      }
+
+      // Physical Bottom-Left Drop Chute Opening (NO Text Label on Chute)
+      ctx.fillStyle = "#2c473a";
+      ctx.fillRect(0, H - 114, CHUTE_WIDTH, 114);
+      ctx.fillStyle = "#1f3329";
+      ctx.fillRect(6, H - 106, CHUTE_WIDTH - 14, 106);
+      ctx.fillStyle = "#d4a234";
+      ctx.fillRect(0, H - 118, CHUTE_WIDTH + 3, 6);
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(0, H - 118, CHUTE_WIDTH + 3, 6);
+
+      // Interior Metallic Gantry Rail
+      const railGrad = ctx.createLinearGradient(0, 18, 0, 32);
+      railGrad.addColorStop(0, "#cfd6d2");
+      railGrad.addColorStop(0.5, "#eef2f0");
+      railGrad.addColorStop(1, "#9aa69f");
+      ctx.fillStyle = railGrad;
+      ctx.fillRect(0, 20, W, 11);
+      ctx.strokeStyle = "#59665f";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(0, 20, W, 11);
+
+      // Coiled Power Cord
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      const loops = Math.max(4, Math.floor((claw.x - 16) / 14));
+      ctx.moveTo(4, 26);
+      for (let i = 1; i <= loops; i++) {
+        const lx = 4 + ((claw.x - 16) / loops) * i;
+        const ly = i % 2 === 0 ? 22 : 34;
+        ctx.quadraticCurveTo(lx - 6, ly, lx, 26);
+      }
+      ctx.stroke();
+
+      // Draw 24 Layered Capsules
+      for (const cap of capsules) {
+        if (cap !== claw.grabbedCapsule) {
+          drawCapsule(cap);
+        }
+      }
+      if (claw.grabbedCapsule) {
+        drawCapsule(claw.grabbedCapsule);
+      }
+
+      // Steel Cable & Mechanical 3-Prong Claw
+      const tipY = claw.y + claw.ropeLength;
+      ctx.strokeStyle = "#48544d";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(claw.x, 31);
+      ctx.lineTo(claw.x, tipY);
+      ctx.stroke();
+
+      // Trolley Housing on Gantry Rail
+      ctx.fillStyle = "#2c473a";
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(claw.x - 20, 13, 40, 24, 6);
+      } else {
+        ctx.rect(claw.x - 20, 13, 40, 24);
+      }
+      ctx.fill();
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Gold Accent Trim on Trolley (#d4a234)
+      ctx.fillStyle = "#d4a234";
+      ctx.fillRect(claw.x - 8, 22, 16, 5);
+
+      // Center Back Prong (3-Prong Mechanical Claw)
+      ctx.strokeStyle = "#5c6861";
+      ctx.lineWidth = 3.5;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(claw.x, tipY + 4);
+      ctx.lineTo(claw.x, tipY + 26);
+      ctx.stroke();
+
+      // Left & Right Articulated Prongs
+      drawProng(claw.x, tipY, -1, claw.jawAngle);
+      drawProng(claw.x, tipY, 1, claw.jawAngle);
+
+      // Claw Hub Joint
+      ctx.fillStyle = "#1f3329";
+      ctx.beginPath();
+      ctx.arc(claw.x, tipY, 8.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#d4a234";
+      ctx.beginPath();
+      ctx.arc(claw.x, tipY, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawProng(cx, cy, side, angle) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(side, 1);
+      ctx.rotate(-angle);
+      ctx.strokeStyle = "#2e3832";
+      ctx.lineWidth = 4.5;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(4, 2);
+      ctx.lineTo(21, 15);
+      ctx.lineTo(13, 33);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawCapsule(cap) {
+      const style = WORD_STYLES[cap.word] || WORD_STYLES.Sense;
+      ctx.save();
+      ctx.translate(cap.x, cap.y);
+      ctx.rotate(cap.angle);
+
+      // Layered drop shadow
+      ctx.beginPath();
+      ctx.arc(1.5, 2.5, CAPSULE_R, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(31, 36, 33, 0.16)";
+      ctx.fill();
+
+      // Bottom colored half
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, 0, Math.PI);
+      ctx.fillStyle = style.fill;
+      ctx.fill();
+
+      // Top frosted dome half
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, Math.PI, Math.PI * 2);
+      ctx.fillStyle = style.cap;
+      ctx.fill();
+
+      // Seam line & outer rim
+      ctx.strokeStyle = style.stroke;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(-CAPSULE_R, 0);
+      ctx.lineTo(CAPSULE_R, 0);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Glossy highlight
+      ctx.fillStyle = "rgba(255, 255, 255, 0.68)";
+      ctx.beginPath();
+      ctx.ellipse(-6, -8, 4.5, 2.2, -0.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    window.onload = function () {
+      loop();
+    };
   </script>
 </body>
 </html>
