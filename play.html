@@ -10,6 +10,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <style>
+    /* Pinned Post-it Note Cards on the Play Landing Board (.pinned with Single 3D Slate Push Pin Only) */
+    .postit-note {
+      position: relative;
+      border-radius: 4px 4px 18px 4px;
+      padding: 34px 24px 26px;
+      box-shadow:
+        0 12px 24px rgba(28, 16, 6, 0.28),
+        0 3px 7px rgba(0, 0, 0, 0.14);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 245px;
+    }
+
+    .postit-note.is-playable {
+      cursor: pointer;
+    }
+
+    .postit-note.is-playable:hover {
+      transform: translateY(-5px) rotate(0deg) scale(1.015);
+      box-shadow:
+        0 18px 34px rgba(28, 16, 6, 0.36),
+        0 6px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .postit-yellow {
+      background: linear-gradient(165deg, #fef5c8 0%, #f9e89b 100%);
+      border: 1px solid #e2cf7d;
+    }
+
+    .postit-mint {
+      background: linear-gradient(165deg, #e5f3ea 0%, #cfe7d8 100%);
+      border: 1px solid #aecdb9;
+    }
+
+    .postit-blue {
+      background: linear-gradient(165deg, #e4eff7 0%, #cfe2f0 100%);
+      border: 1px solid #aec7db;
+    }
+
+    .postit-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+
     /* 3D Flip Card Stage Floating Directly on Corkboard */
     .flip-scene {
       perspective: 1100px;
@@ -100,41 +146,123 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- PAGE 3: PLAY HUB (THE CLAW MACHINE + PRESENCIA CARDS)                 -->
+  <!-- PAGE 3: PLAY LANDING BOARD (PINNED POST-IT NOTES + GAME VIEWS)        -->
   <!-- ===================================================================== -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col items-center space-y-5">
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-7 flex flex-col items-center space-y-6">
 
-    <!-- Sub-Navigation Bar (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
-    <div class="w-full max-w-[740px] index-card rounded-2xl px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
-      <div class="slate-pin top-1/2 -translate-y-1/2 left-2.5"></div>
-      <div class="slate-pin top-1/2 -translate-y-1/2 right-2.5"></div>
+    <!-- =================================================================== -->
+    <!-- VIEW 0: PLAY LANDING PAGE (PINNED POST-IT NOTES ON CORKBOARD)       -->
+    <!-- =================================================================== -->
+    <section id="playBoardView" class="w-full max-w-4xl space-y-7 py-2">
 
-      <div class="pl-5 flex items-center gap-2">
-        <span class="text-xs font-extrabold uppercase tracking-wider text-[#243b2f]">Play Hub</span>
+      <!-- Small Pinned Title Scrap (.pinned with Single 3D Slate Push Pin Only) -->
+      <div class="flex justify-center">
+        <div class="ruled-note rounded-xl px-7 py-4 pt-7 max-w-md text-center relative -rotate-[0.6deg]">
+          <div class="slate-pin top-2.5 left-1/2 -translate-x-1/2"></div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1f2421] tracking-tight">
+            Play Board
+          </h1>
+          <p class="text-xs sm:text-sm text-[#4a534d] mt-1">
+            Pick a pinned note below to open a game.
+          </p>
+        </div>
       </div>
 
-      <div class="pr-5 flex flex-wrap items-center gap-2" role="tablist" aria-label="Play Hub Games">
+      <!-- Pinned Post-It Notes Grid (Each uses a Single 3D Slate Push Pin Only) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 pt-1">
+
+        <!-- Post-It 1: The Claw Machine -->
         <button
           type="button"
-          data-game="claw"
-          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#243b2f] text-[#fbf9f3] shadow-2xs cursor-pointer transition-colors"
+          data-open-game="claw"
+          class="postit-note postit-yellow is-playable -rotate-[1.3deg] focus:outline-none focus:ring-2 focus:ring-[#243b2f]"
         >
-          The Claw Machine
+          <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+
+          <div class="space-y-2.5">
+            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#243b2f] text-[#fbf9f3]">
+              Arcade Toy
+            </span>
+            <h2 class="postit-handwriting text-3xl sm:text-[34px] font-bold text-[#1f2421] leading-none">
+              The Claw Machine
+            </h2>
+            <p class="text-sm leading-relaxed text-[#2d3228]">
+              Move the claw across the bin, drop it down, and crack open a capsule for a small place-aware prompt.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-[#dfd08a] flex items-center justify-between text-xs font-extrabold text-[#243b2f]">
+            <span>Open Machine</span>
+            <span>&rarr;</span>
+          </div>
         </button>
+
+        <!-- Post-It 2: Presencia Cards -->
         <button
           type="button"
-          data-game="cards"
-          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#fdf2c4] hover:bg-[#f6e6a4] text-[#1f2421] border border-[#dfd092] cursor-pointer transition-colors"
+          data-open-game="cards"
+          class="postit-note postit-mint is-playable rotate-[1.1deg] focus:outline-none focus:ring-2 focus:ring-[#243b2f]"
         >
-          Presencia Cards
+          <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+
+          <div class="space-y-2.5">
+            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#3e7b5c] text-white">
+              1-Minute Card
+            </span>
+            <h2 class="postit-handwriting text-3xl sm:text-[34px] font-bold text-[#1f2421] leading-none">
+              Presencia Cards
+            </h2>
+            <p class="text-sm leading-relaxed text-[#28302b]">
+              Draw a random card, start a one-minute countdown, and flip between the symbol and the reflection prompt.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-[#b4d1be] flex items-center justify-between text-xs font-extrabold text-[#243b2f]">
+            <span>Draw a Card</span>
+            <span>&rarr;</span>
+          </div>
         </button>
+
+        <!-- Post-It 3: Future Mini-Game Slot -->
+        <div class="postit-note postit-blue -rotate-[0.7deg] opacity-90">
+          <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+
+          <div class="space-y-2.5">
+            <span class="inline-block text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#567c96] text-white">
+              In Progress
+            </span>
+            <h2 class="postit-handwriting text-3xl sm:text-[34px] font-bold text-[#1f2421] leading-none">
+              Next Field Game
+            </h2>
+            <p class="text-sm leading-relaxed text-[#2b3842]">
+              An open spot on the corkboard saved for the next small playable experiment.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-[#b6cde0] text-xs font-bold text-[#4b6070]">
+            Pinned for later
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
 
     <!-- =================================================================== -->
     <!-- SUB-VIEW A: THE CLAW MACHINE                                        -->
     <!-- =================================================================== -->
-    <div id="subGameClaw" class="w-full flex justify-center">
+    <div id="subGameClaw" class="hidden w-full flex flex-col items-center space-y-4">
+
+      <!-- Pinned Return Post-It Note (.pinned with Single 3D Slate Push Pin Only) -->
+      <div class="w-full max-w-[740px] flex justify-start">
+        <button
+          type="button"
+          class="back-to-board-btn postit-yellow px-4 py-2 pt-5 rounded-md border border-[#e2cf7d] shadow-md text-xs font-extrabold text-[#1f2421] relative -rotate-[1deg] hover:rotate-0 transition-transform cursor-pointer"
+        >
+          <span class="slate-pin top-1.5 left-1/2 -translate-x-1/2 scale-75"></span>
+          &larr; Back to Play Board
+        </button>
+      </div>
+
       <div class="ruled-sheet rounded-2xl p-4 sm:p-6 pt-9 sm:pt-10 w-full max-w-[740px]">
         <div class="slate-pin top-3 left-4"></div>
         <div class="slate-pin top-3 right-4"></div>
@@ -247,7 +375,18 @@
     <!-- =================================================================== -->
     <!-- SUB-VIEW B: PRESENCIA CARDS (PAPER HEADER + FLOATING CORKBOARD CARD)-->
     <!-- =================================================================== -->
-    <div id="subGameCards" class="hidden w-full max-w-[740px] space-y-7 pb-6">
+    <div id="subGameCards" class="hidden w-full max-w-[740px] space-y-6 pb-6">
+
+      <!-- Pinned Return Post-It Note (.pinned with Single 3D Slate Push Pin Only) -->
+      <div class="flex justify-start">
+        <button
+          type="button"
+          class="back-to-board-btn postit-mint px-4 py-2 pt-5 rounded-md border border-[#aecdb9] shadow-md text-xs font-extrabold text-[#1f2421] relative -rotate-[1deg] hover:rotate-0 transition-transform cursor-pointer"
+        >
+          <span class="slate-pin top-1.5 left-1/2 -translate-x-1/2 scale-75"></span>
+          &larr; Back to Play Board
+        </button>
+      </div>
 
       <!-- Taped Ruled Paper Header: Title + 1-Minute Timer + Locked Draw Button -->
       <div class="ruled-note rounded-2xl px-6 sm:px-8 py-5 pt-7 relative">
@@ -289,7 +428,7 @@
       <div class="flip-scene">
         <div id="presenciaFlipCard" class="flip-card-inner" role="button" tabindex="0" aria-label="Flip Presencia Card">
 
-          <!-- FRONT OF CARD: Title + Sage Symbol + Subtitle (Tighter Spacing) -->
+          <!-- FRONT OF CARD: Title + Sage Symbol + Subtitle -->
           <div class="flip-face">
             <h3 id="cardFrontTitle" class="text-2xl sm:text-[26px] font-black tracking-[0.06em] uppercase text-[#141715]">
               ARRIVAL
@@ -304,7 +443,7 @@
             </p>
           </div>
 
-          <!-- BACK OF CARD: Bold Question + Body + Italic Takeaway (Tighter Spacing) -->
+          <!-- BACK OF CARD: Bold Question + Body + Italic Takeaway -->
           <div class="flip-face flip-face-back">
             <h4 id="cardBackQuestion" class="text-[17px] sm:text-lg font-extrabold text-[#141715] leading-snug">
               What's already arrived, and what's still catching up?
@@ -512,51 +651,28 @@
     // 2. PRESENCIA CAPSULE NOTES (24 Place-Aware Prompts for Claw Machine)
     // =========================================================================
     const PRESENCIA_NOTES = [
-      // Sense
       { word: "Sense", text: "What is your body noticing about this place before you even start thinking about it?" },
       { word: "Sense", text: "What sensation have you been tuning out since you arrived here?" },
-
-      // Feel
       { word: "Feel", text: "Predict how something within arm's reach feels before touching it. Touch it. Were you right?" },
       { word: "Feel", text: "Find three different textures nearby and describe each one. Which one is hardest to put into words?" },
-
-      // Notice
       { word: "Notice", text: "What is quietly helping this place function right now that you usually walk past?" },
       { word: "Notice", text: "What around you reveals how time has passed in this space?" },
-
-      // Find
       { word: "Find", text: "Find three small clues about something that was here before you arrived." },
       { word: "Find", text: "Find the smallest deliberate detail someone built or placed near where you are sitting." },
-
-      // Wonder
       { word: "Wonder", text: "Why might something nearby have been designed with that exact shape, weight, or material?" },
       { word: "Wonder", text: "What nearby has traveled the farthest to end up in this exact spot?" },
-
-      // Imagine
       { word: "Imagine", text: "Invent a completely ridiculous reason something nearby exists." },
       { word: "Imagine", text: "Imagine this exact spot one day ago, one year ago, and ten years ago. What changed?" },
-
-      // Engage
       { word: "Engage", text: "What are you already participating in right now without thinking about it?" },
       { word: "Engage", text: "What is this place offering right now that you have not engaged with yet?" },
-
-      // Try
       { word: "Try", text: "Look at something nearby from an angle you never normally use. What looks different?" },
       { word: "Try", text: "Study your immediate area, close your eyes for ten seconds, and see what jumps out when you open them." },
-
-      // Connect
       { word: "Connect", text: "Choose two things you can see nearby and find an unexpected connection between them." },
       { word: "Connect", text: "Think of the next person you will speak to today and listen for what they actually mean, not just your reply." },
-
-      // Share
       { word: "Share", text: "Find something in this space that someone used before you and someone else will use after you leave." },
       { word: "Share", text: "Spot one small detail in this room worth pointing out to someone else later." },
-
-      // Reflect
       { word: "Reflect", text: "Notice what grabbed your attention first when you sat down here, and why." },
       { word: "Reflect", text: "Name one detail about this exact moment that will not be the same an hour from now." },
-
-      // Question
       { word: "Question", text: "What question does this place make you want to ask?" },
       { word: "Question", text: "What would you normally expect to see in a place like this that is missing right now?" }
     ];
@@ -579,43 +695,42 @@
     const WORD_KEYS = Object.keys(WORD_STYLES);
 
     // =========================================================================
-    // 3. PLAY HUB SUB-SWITCHER (Claw Machine vs. Presencia Cards)
+    // 3. PLAY BOARD VIEW SWITCHER (Pinned Post-It Landing <-> Game Views)
     // =========================================================================
-    let activeSubGame = "claw";
+    let activeSubGame = "board";
 
-    function switchSubGame(gameKey) {
-      activeSubGame = gameKey;
+    function openPlayView(viewKey) {
+      activeSubGame = viewKey;
+      const boardView = document.getElementById("playBoardView");
       const subClaw = document.getElementById("subGameClaw");
       const subCards = document.getElementById("subGameCards");
-      const subBtns = document.querySelectorAll(".play-sub-btn");
 
-      subBtns.forEach((btn) => {
-        if (btn.dataset.game === gameKey) {
-          btn.classList.add("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
-          btn.classList.remove("bg-[#fdf2c4]", "text-[#1f2421]");
-        } else {
-          btn.classList.remove("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
-          btn.classList.add("bg-[#fdf2c4]", "text-[#1f2421]");
-        }
-      });
+      boardView.classList.add("hidden");
+      subClaw.classList.add("hidden");
+      subCards.classList.add("hidden");
+      clearInterval(timerInterval);
+      sfxMove();
 
-      if (gameKey === "claw") {
+      if (viewKey === "board") {
+        boardView.classList.remove("hidden");
+      } else if (viewKey === "claw") {
         subClaw.classList.remove("hidden");
-        subCards.classList.add("hidden");
-        clearInterval(timerInterval);
         requestAnimationFrame(() => {
           resizeCanvas();
           layoutCapsules();
         });
-      } else {
-        subClaw.classList.add("hidden");
+      } else if (viewKey === "cards") {
         subCards.classList.remove("hidden");
         drawRandomPresenciaCard();
       }
     }
 
-    document.querySelectorAll(".play-sub-btn").forEach((btn) => {
-      btn.addEventListener("click", () => switchSubGame(btn.dataset.game));
+    document.querySelectorAll("[data-open-game]").forEach((noteBtn) => {
+      noteBtn.addEventListener("click", () => openPlayView(noteBtn.dataset.openGame));
+    });
+
+    document.querySelectorAll(".back-to-board-btn").forEach((backBtn) => {
+      backBtn.addEventListener("click", () => openPlayView("board"));
     });
 
     // =========================================================================
