@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRESENCIA | Play Hub &amp; The Claw Machine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="flex flex-col">
+
+  <!-- TOP PINNED HEADER BAR (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
+  <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-5 z-20">
+    <header class="index-card rounded-2xl px-5 sm:px-7 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="slate-pin top-2.5 left-3"></div>
+      <div class="slate-pin top-2.5 right-3"></div>
+
+      <!-- Left Cluster: PRESENCIA + Inline Logo Directly to the Right -->
+      <div class="pl-4 flex items-center gap-2.5">
+        <a href="index.html" class="font-extrabold tracking-[0.18em] text-base sm:text-lg uppercase text-[#1f2421] no-underline">
+          PRESENCIA
+        </a>
+        <img
+          id="brandLogoImg"
+          src="logo.png"
+          alt="Presencia Logo"
+          class="h-9 w-auto max-w-[130px] rounded-md object-contain border border-[#dfd6c3] bg-white px-1.5 py-0.5 shadow-2xs"
+          onerror="this.style.display='none'"
+        />
+      </div>
+
+      <!-- Right Cluster: 3 Navigation Links -->
+      <div class="pr-4 flex flex-wrap items-center gap-2.5 ml-auto sm:ml-0">
+        <nav aria-label="Primary Pages" class="bg-[#efe9da] p-1 rounded-xl border border-[#d8ceb8] flex flex-wrap items-center gap-1">
+          <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
+            The Corkboard &amp; 5 Pillars
+          </a>
+          <a href="series.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
+            Series &amp; Formats
+          </a>
+          <a href="play.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#243b2f] text-[#fbf9f3] shadow-2xs">
+            Play
+          </a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PAGE 3: PLAY HUB & THE CLAW MACHINE                                   -->
+  <!-- ===================================================================== -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col items-center space-y-5">
+
+    <!-- Sub-Navigation Bar (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
+    <div class="w-full max-w-[740px] index-card rounded-2xl px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="slate-pin top-1/2 -translate-y-1/2 left-2.5"></div>
+      <div class="slate-pin top-1/2 -translate-y-1/2 right-2.5"></div>
+
+      <div class="pl-5 flex items-center gap-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#243b2f]">Play Hub</span>
+      </div>
+
+      <div class="pr-5 flex flex-wrap items-center gap-2" role="tablist" aria-label="Play Hub Games">
+        <button
+          type="button"
+          data-game="claw"
+          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#243b2f] text-[#fbf9f3] shadow-2xs cursor-pointer transition-colors"
+        >
+          The Claw Machine
+        </button>
+        <button
+          type="button"
+          data-game="coming-soon"
+          class="play-sub-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#fdf2c4] hover:bg-[#f6e6a4] text-[#1f2421] border border-[#dfd092] cursor-pointer transition-colors"
+        >
+          More Field Games (Coming Soon)
+        </button>
+      </div>
+    </div>
+
+    <!-- Sub-View A: Claw Machine Framed Inside a Ruled Lined-Paper Poster Sheet -->
+    <div id="subGameClaw" class="w-full flex justify-center">
+      <div class="ruled-sheet rounded-2xl p-4 sm:p-6 pt-9 sm:pt-10 w-full max-w-[740px]">
+        <div class="slate-pin top-3 left-4"></div>
+        <div class="slate-pin top-3 right-4"></div>
+
+        <div class="arcade-stage">
+          <div class="arcade-cabinet">
+
+            <!-- Lit PRESENCIA ARCADE Marquee Header -->
+            <div class="arcade-marquee">
+              <div class="marquee-bulb-bank" id="marqueeBulbBank" aria-hidden="true">
+                <span class="marquee-bulb idle"></span>
+                <span class="marquee-bulb idle"></span>
+                <span class="marquee-bulb idle"></span>
+              </div>
+              <h1 class="marquee-title-text">
+                PRESENCIA ARCADE
+              </h1>
+              <button
+                id="muteBtn"
+                type="button"
+                class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] cursor-pointer z-10"
+                title="Toggle arcade sound effects"
+              >
+                Sound: On
+              </button>
+            </div>
+
+            <!-- Glass Display Window with Subtle Diagonal Glass Reflection -->
+            <div class="glass-bezel">
+              <div class="viewport-wrap" id="viewportWrap">
+                <div class="glass-glare"></div>
+                <canvas id="clawCanvas"></canvas>
+
+                <!-- Taped Ruled Lined-Paper Prompt Card Overlay -->
+                <div class="note-overlay" id="noteOverlay" role="dialog" aria-modal="true" aria-labelledby="noteWord">
+                  <div class="note-card ruled-note">
+                    <div class="masking-tape w-14 h-3.5 -top-2 left-5 -rotate-3"></div>
+                    <div class="masking-tape w-14 h-3.5 -top-2 right-5 rotate-3"></div>
+
+                    <div class="mb-3">
+                      <span
+                        id="noteWord"
+                        class="inline-block text-xs font-extrabold tracking-[0.14em] uppercase px-3.5 py-1 rounded-full text-white shadow-2xs"
+                      >
+                        Sense
+                      </span>
+                    </div>
+                    <p id="noteBody" class="text-[16.5px] leading-relaxed text-[#1f2421] mb-5">
+                      Prompt appears here.
+                    </p>
+                    <button
+                      id="closeNoteBtn"
+                      type="button"
+                      class="bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg cursor-pointer transition-colors"
+                    >
+                      Drop Another
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slanted Control Deck -->
+            <div class="arcade-deck">
+              <div class="flex items-center gap-3">
+                <div class="joystick-assembly hidden sm:flex" aria-hidden="true">
+                  <div class="joystick-shaft" id="joystickShaft">
+                    <div class="joystick-ball"></div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button
+                    id="leftBtn"
+                    type="button"
+                    aria-label="Move Left"
+                    class="arcade-btn-nav"
+                  >
+                    &#9664; Left
+                  </button>
+                  <button
+                    id="rightBtn"
+                    type="button"
+                    aria-label="Move Right"
+                    class="arcade-btn-nav"
+                  >
+                    Right &#9654;
+                  </button>
+                </div>
+              </div>
+
+              <div id="statusText" class="hidden md:block text-xs font-semibold text-[#fbf9f4] text-center">
+                Aim &amp; Drop
+              </div>
+
+              <button
+                id="dropBtn"
+                type="button"
+                class="arcade-btn-drop"
+              >
+                Drop Claw
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-View B: Taped Sticky Note for Future Field Games -->
+    <div id="subGameComingSoon" class="hidden w-full max-w-[740px]">
+      <div class="sticky-yellow rounded-2xl p-8 pt-9 text-center space-y-4">
+        <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+        <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1f2421]">More Field Games (Coming Soon)</h2>
+        <p class="text-sm sm:text-[15px] leading-relaxed text-[#2d3228] max-w-lg mx-auto">
+          This spot on the board is saved for future playable prototypes and small tabletop experiments. Check back as new field games get pinned here.
+        </p>
+        <div class="pt-2">
+          <button
+            id="backToClawBtn"
+            type="button"
+            class="px-5 py-2.5 rounded-xl bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] text-xs sm:text-sm font-bold transition-colors cursor-pointer"
+          >
+            &larr; Back to The Claw Machine
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // PRESENCIA CAPSULE NOTES (24 Place-Aware Prompts: 2 per Single Word)
+    // =========================================================================
+    const PRESENCIA_NOTES = [
+      // Sense
+      { word: "Sense", text: "What is your body noticing about this place before you even start thinking about it?" },
+      { word: "Sense", text: "What sensation have you been tuning out since you arrived here?" },
+
+      // Feel
+      { word: "Feel", text: "Predict how something within arm's reach feels before touching it. Touch it. Were you right?" },
+      { word: "Feel", text: "Find three different textures nearby and describe each one. Which one is hardest to put into words?" },
+
+      // Notice
+      { word: "Notice", text: "What is quietly helping this place function right now that you usually walk past?" },
+      { word: "Notice", text: "What around you reveals how time has passed in this space?" },
+
+      // Find
+      { word: "Find", text: "Find three small clues about something that was here before you arrived." },
+      { word: "Find", text: "Find the smallest deliberate detail someone built or placed near where you are sitting." },
+
+      // Wonder
+      { word: "Wonder", text: "Why might something nearby have been designed with that exact shape, weight, or material?" },
+      { word: "Wonder", text: "What nearby has traveled the farthest to end up in this exact spot?" },
+
+      // Imagine
+      { word: "Imagine", text: "Invent a completely ridiculous reason something nearby exists." },
+      { word: "Imagine", text: "Imagine this exact spot one day ago, one year ago, and ten years ago. What changed?" },
+
+      // Engage
+      { word: "Engage", text: "What are you already participating in right now without thinking about it?" },
+      { word: "Engage", text: "What is this place offering right now that you have not engaged with yet?" },
+
+      // Try
+      { word: "Try", text: "Look at something nearby from an angle you never normally use. What looks different?" },
+      { word: "Try", text: "Study your immediate area, close your eyes for ten seconds, and see what jumps out when you open them." },
+
+      // Connect
+      { word: "Connect", text: "Choose two things you can see nearby and find an unexpected connection between them." },
+      { word: "Connect", text: "Think of the next person you will speak to today and listen for what they actually mean, not just your reply." },
+
+      // Share
+      { word: "Share", text: "Find something in this space that someone used before you and someone else will use after you leave." },
+      { word: "Share", text: "Spot one small detail in this room worth pointing out to someone else later." },
+
+      // Reflect
+      { word: "Reflect", text: "Notice what grabbed your attention first when you sat down here, and why." },
+      { word: "Reflect", text: "Name one detail about this exact moment that will not be the same an hour from now." },
+
+      // Question
+      { word: "Question", text: "What question does this place make you want to ask?" },
+      { word: "Question", text: "What would you normally expect to see in a place like this that is missing right now?" }
+    ];
+
+    const WORD_STYLES = {
+      Sense:    { fill: "#2e7d5b", cap: "#d5ebe0", stroke: "#1d523b" },
+      Feel:     { fill: "#4ea87a", cap: "#def2e7", stroke: "#317050" },
+      Notice:   { fill: "#3b6e9c", cap: "#d7e6f2", stroke: "#244766" },
+      Find:     { fill: "#669bc9", cap: "#e2eef8", stroke: "#41688a" },
+      Wonder:   { fill: "#d4942a", cap: "#f7ebd3", stroke: "#8f6118" },
+      Imagine:  { fill: "#ecc05c", cap: "#fbf3df", stroke: "#a38133" },
+      Engage:   { fill: "#c96534", cap: "#f6e0d5", stroke: "#87411f" },
+      Try:      { fill: "#e68a57", cap: "#fae9df", stroke: "#9e5934" },
+      Connect:  { fill: "#b84642", cap: "#f4d8d7", stroke: "#7d2c29" },
+      Share:    { fill: "#db726e", cap: "#f9e3e2", stroke: "#964845" },
+      Reflect:  { fill: "#6b528a", cap: "#e4dced", stroke: "#46345c" },
+      Question: { fill: "#957ab5", cap: "#eee8f5", stroke: "#624e7a" }
+    };
+
+    const WORD_KEYS = Object.keys(WORD_STYLES);
+
+    // =========================================================================
+    // PLAY HUB SUB-SWITCHER
+    // =========================================================================
+    let activeSubGame = "claw";
+
+    function switchSubGame(gameKey) {
+      activeSubGame = gameKey;
+      const subClaw = document.getElementById("subGameClaw");
+      const subSoon = document.getElementById("subGameComingSoon");
+      const subBtns = document.querySelectorAll(".play-sub-btn");
+
+      subBtns.forEach((btn) => {
+        if (btn.dataset.game === gameKey) {
+          btn.classList.add("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          btn.classList.remove("bg-[#fdf2c4]", "text-[#1f2421]");
+        } else {
+          btn.classList.remove("bg-[#243b2f]", "text-[#fbf9f3]", "shadow-2xs");
+          btn.classList.add("bg-[#fdf2c4]", "text-[#1f2421]");
+        }
+      });
+
+      if (gameKey === "claw") {
+        subClaw.classList.remove("hidden");
+        subSoon.classList.add("hidden");
+        requestAnimationFrame(() => {
+          resizeCanvas();
+          layoutCapsules();
+        });
+      } else {
+        subClaw.classList.add("hidden");
+        subSoon.classList.remove("hidden");
+      }
+    }
+
+    document.querySelectorAll(".play-sub-btn").forEach((btn) => {
+      btn.addEventListener("click", () => switchSubGame(btn.dataset.game));
+    });
+
+    document.getElementById("backToClawBtn").addEventListener("click", () => switchSubGame("claw"));
+
+    // =========================================================================
+    // GENTLE WEB AUDIO API SYNTHESIZED SOUND EFFECTS
+    // =========================================================================
+    let audioCtx = null;
+    let isMuted = false;
+
+    const muteBtn = document.getElementById("muteBtn");
+    muteBtn.addEventListener("click", () => {
+      isMuted = !isMuted;
+      muteBtn.textContent = isMuted ? "Sound: Off" : "Sound: On";
+    });
+
+    function playTone(freq, type, duration, vol = 0.055, slideTo = null) {
+      if (isMuted) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        if (slideTo) {
+          osc.frequency.exponentialRampToValueAtTime(slideTo, audioCtx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function sfxMove() { playTone(220, "sine", 0.05, 0.022, 250); }
+    function sfxDrop() { playTone(315, "triangle", 0.34, 0.048, 145); }
+    function sfxGrab() { playTone(280, "sine", 0.14, 0.055, 420); }
+    function sfxWin() {
+      playTone(392, "sine", 0.22, 0.055);
+      setTimeout(() => playTone(523.25, "sine", 0.34, 0.055), 130);
+    }
+
+    // =========================================================================
+    // CLAW MACHINE CANVAS & PHYSICS ENGINE
+    // =========================================================================
+    const canvas = document.getElementById("clawCanvas");
+    const ctx = canvas.getContext("2d");
+    const wrap = document.getElementById("viewportWrap");
+    const joystickShaft = document.getElementById("joystickShaft");
+
+    let W = 640;
+    let H = 415;
+    const CHUTE_WIDTH = 90;
+    const CAPSULE_R = 20;
+
+    function resizeCanvas() {
+      const rect = wrap.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      W = rect.width;
+      H = rect.height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    const claw = {
+      x: 210,
+      y: 44,
+      minX: CHUTE_WIDTH + 34,
+      maxX: W - 38,
+      ropeLength: 24,
+      baseRope: 24,
+      jawAngle: 0.48,
+      state: "IDLE",
+      grabbedCapsule: null,
+      timer: 0
+    };
+
+    let capsules = [];
+
+    function layoutCapsules() {
+      claw.minX = CHUTE_WIDTH + 34;
+      claw.maxX = Math.max(claw.minX + 60, W - 38);
+      if (claw.x < claw.minX) claw.x = claw.minX;
+      if (claw.x > claw.maxX) claw.x = claw.maxX;
+
+      const pool = [];
+      WORD_KEYS.forEach((w) => {
+        pool.push(w, w);
+      });
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const playLeft = CHUTE_WIDTH + 24;
+      const playRight = Math.max(playLeft + 140, W - 24);
+      const span = playRight - playLeft;
+
+      const rowCounts = [9, 8, 7];
+      const built = [];
+      let cursor = 0;
+
+      for (let r = 0; r < rowCounts.length; r++) {
+        const count = rowCounts[r];
+        const step = span / count;
+        const rowY = H - CAPSULE_R - 6 - r * (CAPSULE_R * 1.58);
+
+        for (let c = 0; c < count; c++) {
+          const word = pool[cursor];
+          const jitterX = Math.sin((cursor + 1) * 3.7) * 4.5;
+          const jitterY = Math.cos((cursor + 1) * 2.9) * 2;
+          const px = playLeft + step * (c + 0.5) + jitterX;
+          const py = rowY + jitterY;
+
+          built.push({
+            id: cursor,
+            word,
+            row: r,
+            x: px,
+            y: py,
+            homeX: px,
+            homeY: py,
+            angle: Math.sin((cursor + 1) * 2.1) * 0.52,
+            vy: 0
+          });
+          cursor++;
+        }
+      }
+
+      capsules = built;
+    }
+
+    resizeCanvas();
+    layoutCapsules();
+
+    window.addEventListener("resize", () => {
+      if (activeSubGame === "claw") {
+        resizeCanvas();
+        layoutCapsules();
+      }
+    });
+
+    const keys = { left: false, right: false };
+    let moveCooldown = 0;
+
+    function updateJoystickVisual() {
+      if (!joystickShaft) return;
+      if (keys.left && !keys.right) {
+        joystickShaft.style.transform = "rotate(-22deg)";
+      } else if (keys.right && !keys.left) {
+        joystickShaft.style.transform = "rotate(22deg)";
+      } else {
+        joystickShaft.style.transform = "rotate(0deg)";
+      }
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (activeSubGame !== "claw") return;
+      if (document.getElementById("noteOverlay").classList.contains("visible")) return;
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keys.left = true;
+        updateJoystickVisual();
+      }
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keys.right = true;
+        updateJoystickVisual();
+      }
+      if ((e.key === " " || e.key === "Enter") && claw.state === "IDLE") {
+        e.preventDefault();
+        triggerDrop();
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
+        keys.left = false;
+        updateJoystickVisual();
+      }
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
+        keys.right = false;
+        updateJoystickVisual();
+      }
+    });
+
+    const leftBtn = document.getElementById("leftBtn");
+    const rightBtn = document.getElementById("rightBtn");
+    const dropBtn = document.getElementById("dropBtn");
+    const statusText = document.getElementById("statusText");
+    const marqueeBulbs = document.querySelectorAll("#marqueeBulbBank .marquee-bulb");
+
+    function setMarqueeLights(wordKey) {
+      if (!marqueeBulbs.length) return;
+      if (!wordKey) {
+        marqueeBulbs.forEach((bulb) => {
+          bulb.classList.remove("flashing");
+          bulb.classList.add("idle");
+          bulb.style.backgroundColor = "#d4a234";
+          bulb.style.boxShadow = "0 0 5px rgba(212, 162, 52, 0.55)";
+        });
+      } else {
+        const style = WORD_STYLES[wordKey] || WORD_STYLES.Sense;
+        marqueeBulbs.forEach((bulb) => {
+          bulb.classList.remove("idle");
+          bulb.classList.add("flashing");
+          bulb.style.backgroundColor = style.fill;
+          bulb.style.boxShadow = `0 0 11px ${style.fill}, 0 0 20px ${style.fill}`;
+        });
+      }
+    }
+
+    function bindHold(btn, dir) {
+      const start = (e) => {
+        e.preventDefault();
+        keys[dir] = true;
+        updateJoystickVisual();
+      };
+      const end = () => {
+        keys[dir] = false;
+        updateJoystickVisual();
+      };
+      btn.addEventListener("mousedown", start);
+      btn.addEventListener("touchstart", start, { passive: false });
+      window.addEventListener("mouseup", end);
+      window.addEventListener("touchend", end);
+    }
+    bindHold(leftBtn, "left");
+    bindHold(rightBtn, "right");
+
+    dropBtn.addEventListener("click", () => {
+      if (claw.state === "IDLE") triggerDrop();
+    });
+
+    function setControlsDisabled(disabled) {
+      leftBtn.disabled = disabled;
+      rightBtn.disabled = disabled;
+      dropBtn.disabled = disabled;
+    }
+
+    function triggerDrop() {
+      if (claw.state !== "IDLE") return;
+      claw.state = "DROPPING";
+      setControlsDisabled(true);
+      statusText.textContent = "Dropping...";
+      sfxDrop();
+    }
+
+    function showReminder(wordKey) {
+      const matching = PRESENCIA_NOTES.filter((n) => n.word === wordKey);
+      const pool = matching.length > 0 ? matching : PRESENCIA_NOTES;
+      const chosen = pool[Math.floor(Math.random() * pool.length)];
+      const style = WORD_STYLES[wordKey] || WORD_STYLES.Sense;
+
+      const badge = document.getElementById("noteWord");
+      badge.textContent = wordKey;
+      badge.style.backgroundColor = style.fill;
+      document.getElementById("noteBody").textContent = chosen.text;
+      document.getElementById("noteOverlay").classList.add("visible");
+      sfxWin();
+    }
+
+    document.getElementById("closeNoteBtn").addEventListener("click", () => {
+      document.getElementById("noteOverlay").classList.remove("visible");
+      if (claw.grabbedCapsule) {
+        const cap = claw.grabbedCapsule;
+        cap.x = cap.homeX;
+        cap.y = cap.homeY;
+        claw.grabbedCapsule = null;
+      }
+      setMarqueeLights(null);
+      claw.state = "IDLE";
+      setControlsDisabled(false);
+      statusText.textContent = "Aim & Drop";
+    });
+
+    function update() {
+      if (activeSubGame !== "claw") return;
+      const clawTipY = claw.y + claw.ropeLength + 24;
+
+      if (claw.state === "IDLE") {
+        let moved = false;
+        if (keys.left && claw.x > claw.minX) {
+          claw.x = Math.max(claw.minX, claw.x - 3.6);
+          moved = true;
+        }
+        if (keys.right && claw.x < claw.maxX) {
+          claw.x = Math.min(claw.maxX, claw.x + 3.6);
+          moved = true;
+        }
+        if (moved) {
+          moveCooldown++;
+          if (moveCooldown % 9 === 0) sfxMove();
+        }
+        claw.jawAngle += (0.48 - claw.jawAngle) * 0.15;
+      } else if (claw.state === "DROPPING") {
+        claw.ropeLength += 4.3;
+        let hit = null;
+        for (let i = capsules.length - 1; i >= 0; i--) {
+          const cap = capsules[i];
+          const dx = Math.abs(cap.x - claw.x);
+          const dy = Math.abs(cap.y - clawTipY);
+          if (dx < CAPSULE_R * 0.92 && dy < CAPSULE_R * 0.85) {
+            hit = cap;
+            break;
+          }
+        }
+        if (hit || clawTipY >= H - 14) {
+          claw.grabbedCapsule = hit;
+          claw.state = "CLOSING";
+          claw.timer = 0;
+          if (hit) {
+            sfxGrab();
+            setMarqueeLights(hit.word);
+          }
+        }
+      } else if (claw.state === "CLOSING") {
+        claw.jawAngle += (0.14 - claw.jawAngle) * 0.22;
+        claw.timer++;
+        if (claw.timer > 18) {
+          claw.state = "RISING";
+          statusText.textContent = claw.grabbedCapsule ? "Lifting..." : "Missed";
+        }
+      } else if (claw.state === "RISING") {
+        claw.ropeLength -= 3.9;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.x = claw.x;
+          claw.grabbedCapsule.y = claw.y + claw.ropeLength + 25;
+        }
+        if (claw.ropeLength <= claw.baseRope) {
+          claw.ropeLength = claw.baseRope;
+          if (claw.grabbedCapsule) {
+            claw.state = "RETURNING";
+            statusText.textContent = "To Chute...";
+          } else {
+            claw.state = "IDLE";
+            setControlsDisabled(false);
+            statusText.textContent = "Aim & Drop";
+          }
+        }
+      } else if (claw.state === "RETURNING") {
+        const chuteCenter = CHUTE_WIDTH / 2;
+        claw.x += (chuteCenter - claw.x) * 0.085;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.x = claw.x;
+          claw.grabbedCapsule.y = claw.y + claw.ropeLength + 25;
+        }
+        if (Math.abs(claw.x - chuteCenter) < 3) {
+          claw.x = chuteCenter;
+          claw.state = "RELEASING";
+          claw.timer = 0;
+        }
+      } else if (claw.state === "RELEASING") {
+        claw.jawAngle += (0.55 - claw.jawAngle) * 0.2;
+        if (claw.grabbedCapsule) {
+          claw.grabbedCapsule.vy += 0.68;
+          claw.grabbedCapsule.y += claw.grabbedCapsule.vy;
+        }
+        claw.timer++;
+        if (claw.timer > 24) {
+          const wonWord = claw.grabbedCapsule ? claw.grabbedCapsule.word : "Sense";
+          if (claw.grabbedCapsule) claw.grabbedCapsule.vy = 0;
+          claw.x = claw.minX + 42;
+          claw.state = "IDLE";
+          showReminder(wonWord);
+        }
+      }
+    }
+
+    function draw() {
+      if (activeSubGame !== "claw") return;
+      ctx.clearRect(0, 0, W, H);
+
+      ctx.fillStyle = "#fbf9f4";
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = "rgba(170, 158, 138, 0.2)";
+      ctx.lineWidth = 1;
+      for (let gx = 0; gx < W; gx += 40) {
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, H);
+        ctx.stroke();
+      }
+      for (let gy = 0; gy < H; gy += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(W, gy);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = "#2c473a";
+      ctx.fillRect(0, H - 114, CHUTE_WIDTH, 114);
+      ctx.fillStyle = "#1f3329";
+      ctx.fillRect(6, H - 106, CHUTE_WIDTH - 14, 106);
+      ctx.fillStyle = "#d4a234";
+      ctx.fillRect(0, H - 118, CHUTE_WIDTH + 3, 6);
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(0, H - 118, CHUTE_WIDTH + 3, 6);
+
+      const railGrad = ctx.createLinearGradient(0, 18, 0, 32);
+      railGrad.addColorStop(0, "#cfd6d2");
+      railGrad.addColorStop(0.5, "#eef2f0");
+      railGrad.addColorStop(1, "#9aa69f");
+      ctx.fillStyle = railGrad;
+      ctx.fillRect(0, 20, W, 11);
+      ctx.strokeStyle = "#59665f";
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(0, 20, W, 11);
+
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      const loops = Math.max(4, Math.floor((claw.x - 16) / 14));
+      ctx.moveTo(4, 26);
+      for (let i = 1; i <= loops; i++) {
+        const lx = 4 + ((claw.x - 16) / loops) * i;
+        const ly = i % 2 === 0 ? 22 : 34;
+        ctx.quadraticCurveTo(lx - 6, ly, lx, 26);
+      }
+      ctx.stroke();
+
+      for (const cap of capsules) {
+        if (cap !== claw.grabbedCapsule) {
+          drawCapsule(cap);
+        }
+      }
+      if (claw.grabbedCapsule) {
+        drawCapsule(claw.grabbedCapsule);
+      }
+
+      const tipY = claw.y + claw.ropeLength;
+      ctx.strokeStyle = "#48544d";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(claw.x, 31);
+      ctx.lineTo(claw.x, tipY);
+      ctx.stroke();
+
+      ctx.fillStyle = "#2c473a";
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(claw.x - 20, 13, 40, 24, 6);
+      } else {
+        ctx.rect(claw.x - 20, 13, 40, 24);
+      }
+      ctx.fill();
+      ctx.strokeStyle = "#1f3329";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.fillStyle = "#d4a234";
+      ctx.fillRect(claw.x - 8, 22, 16, 5);
+
+      ctx.strokeStyle = "#5c6861";
+      ctx.lineWidth = 3.5;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(claw.x, tipY + 4);
+      ctx.lineTo(claw.x, tipY + 26);
+      ctx.stroke();
+
+      drawProng(claw.x, tipY, -1, claw.jawAngle);
+      drawProng(claw.x, tipY, 1, claw.jawAngle);
+
+      ctx.fillStyle = "#1f3329";
+      ctx.beginPath();
+      ctx.arc(claw.x, tipY, 8.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#d4a234";
+      ctx.beginPath();
+      ctx.arc(claw.x, tipY, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawProng(cx, cy, side, angle) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(side, 1);
+      ctx.rotate(-angle);
+      ctx.strokeStyle = "#2e3832";
+      ctx.lineWidth = 4.5;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.beginPath();
+      ctx.moveTo(4, 2);
+      ctx.lineTo(21, 15);
+      ctx.lineTo(13, 33);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawCapsule(cap) {
+      const style = WORD_STYLES[cap.word] || WORD_STYLES.Sense;
+      ctx.save();
+      ctx.translate(cap.x, cap.y);
+      ctx.rotate(cap.angle);
+
+      ctx.beginPath();
+      ctx.arc(1.5, 2.5, CAPSULE_R, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(31, 36, 33, 0.16)";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, 0, Math.PI);
+      ctx.fillStyle = style.fill;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, Math.PI, Math.PI * 2);
+      ctx.fillStyle = style.cap;
+      ctx.fill();
+
+      ctx.strokeStyle = style.stroke;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(-CAPSULE_R, 0);
+      ctx.lineTo(CAPSULE_R, 0);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(0, 0, CAPSULE_R, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.68)";
+      ctx.beginPath();
+      ctx.ellipse(-6, -8, 4.5, 2.2, -0.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function loop() {
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    window.onload = function () {
+      resizeCanvas();
+      layoutCapsules();
+      loop();
+    };
+  </script>
+</body>
+</html>

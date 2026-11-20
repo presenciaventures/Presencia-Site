@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRESENCIA | Series &amp; Formats</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="flex flex-col">
+
+  <!-- TOP PINNED HEADER BAR (.pinned with Two 3D Slate Push Pins, Zero Tape) -->
+  <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 pt-5 z-20">
+    <header class="index-card rounded-2xl px-5 sm:px-7 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="slate-pin top-2.5 left-3"></div>
+      <div class="slate-pin top-2.5 right-3"></div>
+
+      <!-- Left Cluster: PRESENCIA + Inline Logo Directly to the Right -->
+      <div class="pl-4 flex items-center gap-2.5">
+        <a href="index.html" class="font-extrabold tracking-[0.18em] text-base sm:text-lg uppercase text-[#1f2421] no-underline">
+          PRESENCIA
+        </a>
+        <img
+          id="brandLogoImg"
+          src="logo.png"
+          alt="Presencia Logo"
+          class="h-9 w-auto max-w-[130px] rounded-md object-contain border border-[#dfd6c3] bg-white px-1.5 py-0.5 shadow-2xs"
+          onerror="this.style.display='none'"
+        />
+      </div>
+
+      <!-- Right Cluster: 3 Navigation Links -->
+      <div class="pr-4 flex flex-wrap items-center gap-2.5 ml-auto sm:ml-0">
+        <nav aria-label="Primary Pages" class="bg-[#efe9da] p-1 rounded-xl border border-[#d8ceb8] flex flex-wrap items-center gap-1">
+          <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
+            The Corkboard &amp; 5 Pillars
+          </a>
+          <a href="series.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#243b2f] text-[#fbf9f3] shadow-2xs">
+            Series &amp; Formats
+          </a>
+          <a href="play.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
+            Play
+          </a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PAGE 2: SERIES & FORMATS                                              -->
+  <!-- ===================================================================== -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-11">
+
+    <!-- Top Ruled Lined-Paper Header Card (.taped with Masking Tape Only) -->
+    <div class="ruled-sheet rounded-2xl p-6 sm:p-8 pl-11 sm:pl-12 pt-8">
+      <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+      <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-[#1f2421] tracking-tight">
+            Presencia Gaming
+          </h1>
+          <p class="text-[15.5px] sm:text-base leading-relaxed text-[#28302b]">
+            Exploring different ways to be present, one game at a time. Hosted by Cincovato. Gameplay leads, reflection follows.
+          </p>
+        </div>
+
+        <!-- Colored Yellow Sticky Note for YouTube Channel & Playlist Links -->
+        <div class="lg:col-span-5 sticky-yellow rounded-xl p-5 pt-7 rotate-[0.5deg]">
+          <div class="masking-tape w-16 h-4 -top-2 left-1/2 -translate-x-1/2"></div>
+          <div class="flex items-center gap-2.5 mb-3.5">
+            <span class="w-8 h-8 rounded-lg bg-[#c45c52] flex items-center justify-center text-white shrink-0 shadow-2xs">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </span>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-wider text-[#594f33]">YouTube Channel</p>
+              <p class="font-extrabold text-sm text-[#1f2421]">@PresenciaGaming</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <a
+              id="ytChannelLink"
+              href="https://www.youtube.com/@PresenciaGaming"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full text-center py-2 px-3 rounded-lg bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] font-bold text-xs transition-colors"
+            >
+              Watch on YouTube &nearr;
+            </a>
+            <div class="grid grid-cols-2 gap-2">
+              <a
+                id="ytHomesteadTopLink"
+                href="https://www.youtube.com/@PresenciaGaming/playlists"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center py-2 px-2.5 rounded-lg bg-[#3e7b5c] hover:bg-[#316349] text-white font-bold text-[11px] transition-colors"
+              >
+                Homestead Playlist &nearr;
+              </a>
+              <a
+                id="ytPresenciaLockeTopLink"
+                href="https://www.youtube.com/@PresenciaGaming/playlists"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-center py-2 px-2.5 rounded-lg bg-[#567c96] hover:bg-[#43647a] text-white font-bold text-[11px] transition-colors"
+              >
+                PresenciaLocke Playlist &nearr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Equal-Height Pinned Series Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7 items-stretch">
+      <!-- Card 1: Homestead -->
+      <article class="index-card rounded-2xl p-6 sm:p-7 pt-9 h-full flex flex-col justify-between border-l-4 -rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-left-color: #3e7b5c;">
+        <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #3e7b5c;">
+              Stewardship
+            </span>
+            <span class="text-xs font-bold text-[#2b332e] bg-[#fdf2c4] border border-[#e3d18d] px-2.5 py-1 rounded-md">
+              Minecraft | Sundays at 10:00 AM PT
+            </span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-[#1f2421]">Homestead</h2>
+          <p class="text-sm sm:text-[15px] leading-relaxed text-[#28302b]">
+            A long-term survival build focused on caring for, shaping, and inhabiting a persistent world over time. Instead of strip-mining for quick progress or rushing to beat the game, every session asks what it takes to build with patience and leave the world more lived-in than we found it.
+          </p>
+        </div>
+        <div class="pt-5 mt-6 border-t border-[#e3dac6] flex justify-end">
+          <a
+            id="ytHomesteadLink"
+            href="https://www.youtube.com/@PresenciaGaming/playlists"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-[#3e7b5c] hover:bg-[#316349] text-white text-xs font-bold transition-colors"
+          >
+            Homestead Playlist &nearr;
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: PresenciaLocke -->
+      <article class="index-card rounded-2xl p-6 sm:p-7 pt-9 h-full flex flex-col justify-between border-l-4 rotate-[0.4deg] hover:rotate-0 transition-transform" style="border-left-color: #567c96;">
+        <div class="slate-pin top-3 left-1/2 -translate-x-1/2"></div>
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full text-white" style="background-color: #567c96;">
+              Acceptance
+            </span>
+            <span class="text-xs font-bold text-[#2b332e] bg-[#fdf2c4] border border-[#e3d18d] px-2.5 py-1 rounded-md">
+              Pok&eacute;mon FireRed Ultra | Wednesdays at 10:00 AM PT
+            </span>
+          </div>
+          <h2 class="text-2xl font-extrabold text-[#1f2421]">PresenciaLocke</h2>
+          <p class="text-sm sm:text-[15px] leading-relaxed text-[#28302b]">
+            A Nuzlocke challenge run built around the Presencia Shift. We do not bench favorites by choice; we work within the Presencia Shift for who stays and who shifts, adapting our strategy on the fly when control is taken out of our hands.
+          </p>
+        </div>
+        <div class="pt-5 mt-6 border-t border-[#e3dac6] flex justify-end">
+          <a
+            id="ytPresenciaLockeLink"
+            href="https://www.youtube.com/@PresenciaGaming/playlists"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-[#567c96] hover:bg-[#43647a] text-white text-xs font-bold transition-colors"
+          >
+            PresenciaLocke Playlist &nearr;
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Bottom Format Comparison Ruled Lined-Paper Card -->
+    <div class="ruled-note rounded-2xl pt-2">
+      <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
+      <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+
+      <div class="bg-[#243b2f] text-[#fbf9f3] px-6 py-4 rounded-t-xl border-b-2 border-[#17271f] text-center">
+        <h3 class="text-xl font-extrabold tracking-tight">What Makes Presencia Formats Different</h3>
+      </div>
+
+      <div class="divide-y divide-[#cbd5e1] rounded-b-2xl overflow-hidden">
+        <div class="hidden md:grid md:grid-cols-12 bg-[#f3ede0]/85 px-6 py-3 text-xs font-extrabold uppercase tracking-wider text-[#4a534d]">
+          <div class="col-span-3">Category</div>
+          <div class="col-span-4">Standard Gaming Videos</div>
+          <div class="col-span-5 text-[#243b2f]">Presencia Gaming</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Pacing</div>
+          <div class="md:col-span-4 text-[#4a534d]">Fast cuts, speedruns, and rushing the main objective</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Unhurried sessions where atmosphere and details have room to breathe</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start bg-[#faf6ec]/70">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Setbacks</div>
+          <div class="md:col-span-4 text-[#4a534d]">Resetting the save file or raging when things go wrong</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Keeping the loss, adapting to the shift, and playing forward</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Episode Structure</div>
+          <div class="md:col-span-4 text-[#4a534d]">Heavy reliance on episode numbers and prior lore</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Self-contained runs anchored around what is actually being built or tested</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 px-6 py-4 gap-2 md:gap-4 text-sm items-start bg-[#faf6ec]/70">
+          <div class="md:col-span-3 font-extrabold text-[#1f2421]">Tone</div>
+          <div class="md:col-span-4 text-[#4a534d]">Loud hype cycles, clickbait reactions, or scripted lectures</div>
+          <div class="md:col-span-5 text-[#1f2421] font-medium">Grounded, observant commentary where gameplay leads and reflection follows</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Centralized YouTube & Playlist URLs
+    const PRESENCIA_LINKS = {
+      channel: "https://www.youtube.com/@PresenciaGaming",
+      homestead: "https://www.youtube.com/@PresenciaGaming/playlists",
+      presenciaLocke: "https://www.youtube.com/@PresenciaGaming/playlists"
+    };
+
+    document.getElementById("ytChannelLink").href = PRESENCIA_LINKS.channel;
+    document.getElementById("ytHomesteadTopLink").href = PRESENCIA_LINKS.homestead;
+    document.getElementById("ytPresenciaLockeTopLink").href = PRESENCIA_LINKS.presenciaLocke;
+    document.getElementById("ytHomesteadLink").href = PRESENCIA_LINKS.homestead;
+    document.getElementById("ytPresenciaLockeLink").href = PRESENCIA_LINKS.presenciaLocke;
+  </script>
+</body>
+</html>
