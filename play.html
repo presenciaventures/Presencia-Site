@@ -138,7 +138,7 @@
                       type="button"
                       class="bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg cursor-pointer transition-colors"
                     >
-                      Drop Another
+                       Another
                     </button>
                   </div>
                 </div>
@@ -174,14 +174,14 @@
                 </div>
               </div>
 
-              <div id="statusText" class="hidden md:block text-xs font-semibold text-[#fbf9f4] text-center">
-                HERE & NOW
-              </div>
+             <div id="statusText" class="hidden md:block text-lg font-bold tracking-wide text-[#fbf9f4] text-center">
+  HERE &amp; NOW
+</div>
 
               <button
-                id="dropBtn"
+                id="Btn"
                 type="button"
-                class="arcade-btn-drop"
+                class="arcade-btn-"
               >
                 NOW Claw
               </button>
@@ -361,7 +361,7 @@
     }
 
     function sfxMove() { playTone(220, "sine", 0.05, 0.022, 250); }
-    function sfxDrop() { playTone(315, "triangle", 0.34, 0.048, 145); }
+    function sfx() { playTone(315, "triangle", 0.34, 0.048, 145); }
     function sfxGrab() { playTone(280, "sine", 0.14, 0.055, 420); }
     function sfxWin() {
       playTone(392, "sine", 0.22, 0.055);
@@ -498,7 +498,7 @@
       }
       if ((e.key === " " || e.key === "Enter") && claw.state === "IDLE") {
         e.preventDefault();
-        triggerDrop();
+        trigger();
       }
     });
 
@@ -515,7 +515,7 @@
 
     const leftBtn = document.getElementById("leftBtn");
     const rightBtn = document.getElementById("rightBtn");
-    const dropBtn = document.getElementById("dropBtn");
+    const Btn = document.getElementById("Btn");
     const statusText = document.getElementById("statusText");
     const marqueeBulbs = document.querySelectorAll("#marqueeBulbBank .marquee-bulb");
 
@@ -557,22 +557,22 @@
     bindHold(leftBtn, "left");
     bindHold(rightBtn, "right");
 
-    dropBtn.addEventListener("click", () => {
-      if (claw.state === "IDLE") triggerDrop();
+    Btn.addEventListener("click", () => {
+      if (claw.state === "IDLE") trigger();
     });
 
     function setControlsDisabled(disabled) {
       leftBtn.disabled = disabled;
       rightBtn.disabled = disabled;
-      dropBtn.disabled = disabled;
+      Btn.disabled = disabled;
     }
 
-    function triggerDrop() {
+    function trigger() {
       if (claw.state !== "IDLE") return;
-      claw.state = "DROPPING";
+      claw.state = "PING";
       setControlsDisabled(true);
-      statusText.textContent = "Dropping...";
-      sfxDrop();
+      statusText.textContent = "ping...";
+      sfx();
     }
 
     function showReminder(wordKey) {
@@ -622,7 +622,7 @@
           if (moveCooldown % 9 === 0) sfxMove();
         }
         claw.jawAngle += (0.48 - claw.jawAngle) * 0.15;
-      } else if (claw.state === "DROPPING") {
+      } else if (claw.state === "PING") {
         claw.ropeLength += 4.3;
         let hit = null;
         for (let i = capsules.length - 1; i >= 0; i--) {
