@@ -56,6 +56,53 @@
       font-family: 'Caveat', cursive;
     }
 
+    /* 8-Card Spread & Shuffle Arena Floating Directly on Corkboard */
+    .shuffle-arena {
+      position: relative;
+      width: 100%;
+      height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .mini-deck-card {
+      position: absolute;
+      width: 112px;
+      height: 152px;
+      background-color: #fbf9f3;
+      border: 2px solid #2b332e;
+      border-radius: 12px;
+      box-shadow:
+        0 10px 20px rgba(28, 16, 6, 0.28),
+        0 3px 6px rgba(0, 0, 0, 0.14);
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      user-select: none;
+      transition: transform 0.52s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+      will-change: transform, opacity;
+    }
+
+    @media (min-width: 640px) {
+      .mini-deck-card {
+        width: 132px;
+        height: 178px;
+        padding: 12px 10px;
+        border-radius: 14px;
+      }
+    }
+
+    .mini-deck-card.is-selected-deal {
+      box-shadow:
+        0 20px 38px rgba(28, 16, 6, 0.42),
+        0 0 0 3px #243b2f;
+    }
+
     /* 3D Flip Card Stage Floating Directly on Corkboard */
     .flip-scene {
       perspective: 1100px;
@@ -213,7 +260,7 @@
               Presencia Cards
             </h2>
             <p class="text-sm leading-relaxed text-[#28302b]">
-              Draw a random card, start a one-minute countdown, and flip between the symbol and the reflection prompt.
+              See all 8 cards spread out, shuffle them to draw one, and flip it over while a one-minute timer runs.
             </p>
           </div>
 
@@ -373,7 +420,7 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- SUB-VIEW B: PRESENCIA CARDS (PAPER HEADER + FLOATING CORKBOARD CARD)-->
+    <!-- SUB-VIEW B: PRESENCIA CARDS (8-CARD SPREAD -> SHUFFLE -> FLIP CARD) -->
     <!-- =================================================================== -->
     <div id="subGameCards" class="hidden w-full max-w-[740px] space-y-6 pb-6">
 
@@ -396,7 +443,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h2 class="text-xl sm:text-2xl font-extrabold text-[#1f2421]">Presencia Cards</h2>
-            <p class="text-xs text-[#4a534d]">Click the card to flip between front and back.</p>
+            <p id="cardStatusHint" class="text-xs text-[#4a534d]">Shuffling the 8 cards...</p>
           </div>
 
           <!-- Timer + Draw New Card Button Side-by-Side -->
@@ -407,7 +454,8 @@
             <button
               id="btnPauseTimer"
               type="button"
-              class="text-[11px] font-bold px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f3ede0] text-[#1f2421] border border-[#d6c9a5] cursor-pointer"
+              disabled
+              class="text-[11px] font-bold px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f3ede0] text-[#1f2421] border border-[#d6c9a5] cursor-pointer disabled:opacity-45 disabled:cursor-not-allowed"
             >
               Pause
             </button>
@@ -424,8 +472,13 @@
         </div>
       </div>
 
-      <!-- 3D Flippable Card Floating Directly on the Corkboard -->
-      <div class="flip-scene">
+      <!-- Stage 1: 8-Card Spread & Shuffle Animation on Corkboard -->
+      <div id="cardShuffleStage" class="shuffle-arena" aria-live="polite">
+        <!-- 8 mini cards injected and animated by JS -->
+      </div>
+
+      <!-- Stage 2: 3D Flippable Card Floating Directly on the Corkboard -->
+      <div id="cardActiveStage" class="flip-scene hidden">
         <div id="presenciaFlipCard" class="flip-card-inner" role="button" tabindex="0" aria-label="Flip Presencia Card">
 
           <!-- FRONT OF CARD: Title + Sage Symbol + Subtitle -->
@@ -479,7 +532,7 @@
           "There's often a small gap between where your body is and where your thoughts are. That's normal."
         ],
         footer: "Let this moment count as a beginning, even if nothing else changes.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><path d="M32 95 V54 A28 28 0 0 1 88 54 V95 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><path d="M32 95 V54 A28 28 0 0 1 88 54 V95 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
       },
       {
         title: "ATTENTION",
@@ -490,7 +543,7 @@
           "It tends to circle what feels unfinished, interesting, or familiar, sometimes without asking you first."
         ],
         footer: "You don't need to redirect it. Just notice where it's landing.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><circle cx="60" cy="60" r="22" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><circle cx="60" cy="60" r="22" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
       },
       {
         title: "PACE",
@@ -501,7 +554,7 @@
           "Sometimes that pace helps you get through things. Other times, it just carries over."
         ],
         footer: "You're allowed to adjust or keep going as you are.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><rect x="26" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="53" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="80" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><rect x="26" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="53" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="80" y="30" width="14" height="60" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
       },
       {
         title: "CARE",
@@ -512,7 +565,7 @@
           "Sometimes it looks like action. Sometimes it looks like patience, space, or leaving things alone."
         ],
         footer: "Small care still matters.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><path d="M16 42 H38 A22 22 0 0 0 82 42 H104 A44 44 0 0 1 16 42 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><path d="M16 42 H38 A22 22 0 0 0 82 42 H104 A44 44 0 0 1 16 42 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
       },
       {
         title: "EFFORT",
@@ -523,7 +576,7 @@
           "Some things ask for focus and presence more than pushing or proving."
         ],
         footer: "Let it be steady, not heavy.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><polygon points="60,24 90,36 90,94 30,94 30,36" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><polygon points="60,24 90,36 90,94 30,94 30,36" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
       },
       {
         title: "RELEASE",
@@ -534,7 +587,7 @@
           "You don't always notice the weight until something shifts or slows down."
         ],
         footer: "Making space is allowed.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><path d="M60 22 C60 22 86 58 86 76 A26 26 0 0 1 34 76 C34 58 60 22 60 22 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><path d="M60 22 C60 22 86 58 86 76 A26 26 0 0 1 34 76 C34 58 60 22 60 22 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
       },
       {
         title: "CONNECTION",
@@ -545,7 +598,7 @@
           "People, places, routines, sounds, silence — even this moment has context."
         ],
         footer: "Notice what you're part of.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><path d="M12 52 Q24 42 36 52 T60 52 T84 52 T108 52 V68 Q96 58 84 68 T60 68 T36 68 T12 68 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><path d="M12 52 Q24 42 36 52 T60 52 T84 52 T108 52 V68 Q96 58 84 68 T60 68 T36 68 T12 68 Z" fill="#526152" stroke="#141715" stroke-width="4" stroke-linejoin="round"/></svg>`
       },
       {
         title: "REFLECTION",
@@ -556,7 +609,7 @@
           "Some moments matter because they linger, not because they were big or clear."
         ],
         footer: "Let noticing be enough for now.",
-        symbolSvg: `<svg viewBox="0 0 120 120" class="w-28 h-28"><rect x="34" y="46" width="52" height="14" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="16" y="68" width="88" height="14" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
+        symbolSvg: `<svg viewBox="0 0 120 120" class="w-full h-full"><rect x="34" y="46" width="52" height="14" fill="#526152" stroke="#141715" stroke-width="4"/><rect x="16" y="68" width="88" height="14" fill="#526152" stroke="#141715" stroke-width="4"/></svg>`
       }
     ];
 
@@ -564,11 +617,22 @@
     let timerSeconds = 60;
     let timerInterval = null;
     let timerPaused = false;
+    let shuffleTimeouts = [];
+    let isShuffling = false;
 
+    const shuffleStageEl = document.getElementById("cardShuffleStage");
+    const activeStageEl = document.getElementById("cardActiveStage");
     const flipCardEl = document.getElementById("presenciaFlipCard");
     const timerDisplayEl = document.getElementById("cardTimerDisplay");
+    const cardStatusHintEl = document.getElementById("cardStatusHint");
     const btnPauseTimer = document.getElementById("btnPauseTimer");
     const btnDrawRandomCard = document.getElementById("btnDrawRandomCard");
+
+    function clearShuffleSequence() {
+      shuffleTimeouts.forEach((id) => clearTimeout(id));
+      shuffleTimeouts = [];
+      isShuffling = false;
+    }
 
     function updateTimerUI() {
       const mins = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
@@ -594,35 +658,136 @@
           clearInterval(timerInterval);
           btnDrawRandomCard.disabled = false;
           btnPauseTimer.disabled = true;
+          cardStatusHintEl.textContent = "Time's up — draw a new card whenever you're ready.";
           sfxWin();
         }
       }, 1000);
     }
 
-    function drawRandomPresenciaCard() {
+    function showEightCardsAndShuffle() {
+      clearInterval(timerInterval);
+      clearShuffleSequence();
+      isShuffling = true;
+
+      // Reset timer & lock controls during spread + shuffle
+      timerSeconds = 60;
+      updateTimerUI();
+      btnPauseTimer.disabled = true;
+      btnPauseTimer.textContent = "Pause";
+      btnDrawRandomCard.disabled = true;
+      cardStatusHintEl.textContent = "All 8 cards — shuffling...";
+
+      activeStageEl.classList.add("hidden");
+      shuffleStageEl.classList.remove("hidden");
+      shuffleStageEl.innerHTML = "";
+
+      // Pick the target card up front (avoiding immediate repeat)
       let nextIdx = Math.floor(Math.random() * PRESENCIA_CARDS_DECK.length);
       if (PRESENCIA_CARDS_DECK.length > 1 && nextIdx === currentCardIndex) {
         nextIdx = (nextIdx + 1) % PRESENCIA_CARDS_DECK.length;
       }
       currentCardIndex = nextIdx;
-      const card = PRESENCIA_CARDS_DECK[currentCardIndex];
 
-      flipCardEl.classList.remove("is-flipped");
+      // Build all 8 mini cards in a clean 2x4 grid spread on the corkboard
+      const isSmallScreen = window.innerWidth < 640;
+      const colSpacing = isSmallScreen ? 86 : 152;
+      const rowSpacing = isSmallScreen ? 92 : 104;
 
-      document.getElementById("cardFrontTitle").textContent = card.title;
-      document.getElementById("cardFrontSymbol").innerHTML = card.symbolSvg;
-      document.getElementById("cardFrontSubtitle").textContent = card.subtitle;
+      const cardNodes = PRESENCIA_CARDS_DECK.map((card, idx) => {
+        const el = document.createElement("div");
+        el.className = "mini-deck-card";
+        el.innerHTML = `
+          <div class="text-[10px] sm:text-xs font-black tracking-wider uppercase text-[#141715]">${card.title}</div>
+          <div class="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">${card.symbolSvg}</div>
+          <div class="text-[9px] sm:text-[11px] font-medium text-[#28302b] leading-tight">${card.subtitle}</div>
+        `;
 
-      document.getElementById("cardBackQuestion").textContent = card.question;
-      document.getElementById("cardBackBody").innerHTML = card.body
-        .map((line) => `<p>${line}</p>`)
-        .join("");
-      document.getElementById("cardBackFooter").textContent = card.footer;
+        const col = idx % 4;
+        const row = Math.floor(idx / 4);
+        const spreadX = (col - 1.5) * colSpacing;
+        const spreadY = (row === 0 ? -1 : 1) * rowSpacing;
+        const spreadRot = (col - 1.5) * 3.5 + (row === 0 ? -1.5 : 1.5);
 
-      startOneMinuteTimer();
+        el.style.transform = `translate(${spreadX}px, ${spreadY}px) rotate(${spreadRot}deg)`;
+        el.style.zIndex = String(idx + 1);
+        shuffleStageEl.appendChild(el);
+        return el;
+      });
+
+      // Step 1 (after 1.1s so user sees all 8 cards): Gather into center stack
+      shuffleTimeouts.push(setTimeout(() => {
+        sfxMove();
+        cardNodes.forEach((el, idx) => {
+          const stackRot = (idx - 3.5) * 2.2;
+          const stackY = (idx - 3.5) * -1.5;
+          el.style.transform = `translate(0px, ${stackY}px) rotate(${stackRot}deg)`;
+        });
+      }, 1100));
+
+      // Step 2 (1.65s): Riffle split left & right
+      shuffleTimeouts.push(setTimeout(() => {
+        sfxMove();
+        cardNodes.forEach((el, idx) => {
+          const goLeft = idx % 2 === 0;
+          const offsetX = goLeft ? -72 : 72;
+          const rot = goLeft ? -10 : 10;
+          el.style.transform = `translate(${offsetX}px, ${(idx % 4) * -3}px) rotate(${rot}deg)`;
+          el.style.zIndex = String(goLeft ? idx + 10 : idx + 1);
+        });
+      }, 1650));
+
+      // Step 3 (2.1s): Second riffle weave
+      shuffleTimeouts.push(setTimeout(() => {
+        sfxMove();
+        cardNodes.forEach((el, idx) => {
+          const goRight = idx % 2 === 0;
+          const offsetX = goRight ? 64 : -64;
+          const rot = goRight ? 8 : -8;
+          el.style.transform = `translate(${offsetX}px, ${(idx % 3) * 3}px) rotate(${rot}deg)`;
+          el.style.zIndex = String(goRight ? idx + 10 : idx + 1);
+        });
+      }, 2100));
+
+      // Step 4 (2.55s): Re-gather tight stack & highlight the dealt card
+      shuffleTimeouts.push(setTimeout(() => {
+        sfxGrab();
+        cardNodes.forEach((el, idx) => {
+          if (idx === currentCardIndex) {
+            el.style.zIndex = "50";
+            el.classList.add("is-selected-deal");
+            el.style.transform = "translate(0px, -10px) rotate(0deg) scale(1.18)";
+          } else {
+            el.style.transform = `translate(0px, ${(idx - 3.5) * 1.5}px) rotate(${(idx - 3.5) * 1.4}deg) scale(0.95)`;
+            el.style.opacity = "0.25";
+          }
+        });
+      }, 2550));
+
+      // Step 5 (3.1s): Reveal full 3D flippable card and start the 1-minute timer
+      shuffleTimeouts.push(setTimeout(() => {
+        const card = PRESENCIA_CARDS_DECK[currentCardIndex];
+        flipCardEl.classList.remove("is-flipped");
+
+        document.getElementById("cardFrontTitle").textContent = card.title;
+        document.getElementById("cardFrontSymbol").innerHTML = `<div class="w-28 h-28">${card.symbolSvg}</div>`;
+        document.getElementById("cardFrontSubtitle").textContent = card.subtitle;
+
+        document.getElementById("cardBackQuestion").textContent = card.question;
+        document.getElementById("cardBackBody").innerHTML = card.body
+          .map((line) => `<p>${line}</p>`)
+          .join("");
+        document.getElementById("cardBackFooter").textContent = card.footer;
+
+        shuffleStageEl.classList.add("hidden");
+        activeStageEl.classList.remove("hidden");
+        cardStatusHintEl.textContent = "Click the card to flip between front and back.";
+        isShuffling = false;
+        startOneMinuteTimer();
+      }, 3100));
     }
 
     function toggleCardFlip() {
+      if (isShuffling) return;
       flipCardEl.classList.toggle("is-flipped");
       sfxMove();
     }
@@ -636,8 +801,8 @@
     });
 
     btnDrawRandomCard.addEventListener("click", () => {
-      if (!btnDrawRandomCard.disabled) {
-        drawRandomPresenciaCard();
+      if (!btnDrawRandomCard.disabled && !isShuffling) {
+        showEightCardsAndShuffle();
       }
     });
 
@@ -709,6 +874,7 @@
       subClaw.classList.add("hidden");
       subCards.classList.add("hidden");
       clearInterval(timerInterval);
+      clearShuffleSequence();
       sfxMove();
 
       if (viewKey === "board") {
@@ -721,7 +887,7 @@
         });
       } else if (viewKey === "cards") {
         subCards.classList.remove("hidden");
-        drawRandomPresenciaCard();
+        showEightCardsAndShuffle();
       }
     }
 
