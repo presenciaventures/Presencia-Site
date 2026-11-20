@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PRESENCIA | Play Hub &amp; The Claw Machine</title>
+  <title>PRESENCIA | Play</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
       <div class="pr-4 flex flex-wrap items-center gap-2.5 ml-auto sm:ml-0">
         <nav aria-label="Primary Pages" class="bg-[#efe9da] p-1 rounded-xl border border-[#d8ceb8] flex flex-wrap items-center gap-1">
           <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
-            Presence & The 5 Notes
+            Presence &amp; The 5 Notes
           </a>
           <a href="series.html" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all text-[#3c4540] hover:text-[#1f2421]">
             Series &amp; Formats
@@ -138,7 +138,7 @@
                       type="button"
                       class="bg-[#2c473a] hover:bg-[#1f3329] text-[#fbf9f4] font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg cursor-pointer transition-colors"
                     >
-                       Another
+                      Drop Another
                     </button>
                   </div>
                 </div>
@@ -174,16 +174,16 @@
                 </div>
               </div>
 
-             <div id="statusText" class="hidden md:block text-sm font-semibold text-[#fbf9f4] text-center">
-  HERE &amp; NOW
-</div>
+              <div id="statusText" class="hidden md:block text-base font-bold tracking-wide text-[#fbf9f4] text-center">
+                HERE &amp; NOW
+              </div>
 
               <button
-                id="Btn"
+                id="dropBtn"
                 type="button"
-                class="arcade-btn-"
+                class="arcade-btn-drop"
               >
-                NOW Claw
+                Drop Claw
               </button>
             </div>
 
@@ -361,7 +361,7 @@
     }
 
     function sfxMove() { playTone(220, "sine", 0.05, 0.022, 250); }
-    function sfx() { playTone(315, "triangle", 0.34, 0.048, 145); }
+    function sfxDrop() { playTone(315, "triangle", 0.34, 0.048, 145); }
     function sfxGrab() { playTone(280, "sine", 0.14, 0.055, 420); }
     function sfxWin() {
       playTone(392, "sine", 0.22, 0.055);
@@ -498,7 +498,7 @@
       }
       if ((e.key === " " || e.key === "Enter") && claw.state === "IDLE") {
         e.preventDefault();
-        trigger();
+        triggerDrop();
       }
     });
 
@@ -515,7 +515,7 @@
 
     const leftBtn = document.getElementById("leftBtn");
     const rightBtn = document.getElementById("rightBtn");
-    const Btn = document.getElementById("Btn");
+    const dropBtn = document.getElementById("dropBtn");
     const statusText = document.getElementById("statusText");
     const marqueeBulbs = document.querySelectorAll("#marqueeBulbBank .marquee-bulb");
 
@@ -557,22 +557,22 @@
     bindHold(leftBtn, "left");
     bindHold(rightBtn, "right");
 
-    Btn.addEventListener("click", () => {
-      if (claw.state === "IDLE") trigger();
+    dropBtn.addEventListener("click", () => {
+      if (claw.state === "IDLE") triggerDrop();
     });
 
     function setControlsDisabled(disabled) {
       leftBtn.disabled = disabled;
       rightBtn.disabled = disabled;
-      Btn.disabled = disabled;
+      dropBtn.disabled = disabled;
     }
 
-    function trigger() {
+    function triggerDrop() {
       if (claw.state !== "IDLE") return;
-      claw.state = "PING";
+      claw.state = "DROPPING";
       setControlsDisabled(true);
-      statusText.textContent = "ping...";
-      sfx();
+      statusText.textContent = "Dropping...";
+      sfxDrop();
     }
 
     function showReminder(wordKey) {
@@ -622,7 +622,7 @@
           if (moveCooldown % 9 === 0) sfxMove();
         }
         claw.jawAngle += (0.48 - claw.jawAngle) * 0.15;
-      } else if (claw.state === "PING") {
+      } else if (claw.state === "DROPPING") {
         claw.ropeLength += 4.3;
         let hit = null;
         for (let i = capsules.length - 1; i >= 0; i--) {
