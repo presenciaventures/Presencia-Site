@@ -10,12 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* 3D Flip Card Stage for Presencia Cards */
+    /* 3D Flip Card Stage Floating Directly on Corkboard */
     .flip-scene {
       perspective: 1100px;
       width: 100%;
-      max-width: 340px;
-      height: 465px;
+      max-width: 330px;
+      height: 430px;
       margin: 0 auto;
     }
 
@@ -41,20 +41,22 @@
       border: 2px solid #2b332e;
       border-radius: 20px;
       box-shadow:
-        0 14px 28px rgba(34, 20, 8, 0.24),
-        0 4px 8px rgba(0, 0, 0, 0.12);
-      padding: 32px 26px;
+        0 16px 32px rgba(28, 16, 6, 0.34),
+        0 4px 10px rgba(0, 0, 0, 0.16);
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 22px;
       text-align: center;
       user-select: none;
     }
 
     .flip-face-back {
       transform: rotateY(180deg);
-      padding: 30px 24px;
+      gap: 18px;
+      padding: 28px 24px;
     }
   </style>
 </head>
@@ -243,121 +245,83 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- SUB-VIEW B: PRESENCIA CARDS (RANDOM DRAW + 1-MINUTE TIMER + FLIP)   -->
+    <!-- SUB-VIEW B: PRESENCIA CARDS (PAPER HEADER + FLOATING CORKBOARD CARD)-->
     <!-- =================================================================== -->
-    <div id="subGameCards" class="hidden w-full max-w-[740px]">
-      <div class="ruled-sheet rounded-2xl p-5 sm:p-8 pl-11 sm:pl-12 pt-9 space-y-6">
-        <div class="masking-tape w-20 h-4 -top-2 left-8 -rotate-3"></div>
-        <div class="masking-tape w-20 h-4 -top-2 right-8 rotate-3"></div>
+    <div id="subGameCards" class="hidden w-full max-w-[740px] space-y-7 pb-6">
 
-        <!-- Top Control & 1-Minute Countdown Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#dfd6c3] pb-4">
+      <!-- Taped Ruled Paper Header: Title + 1-Minute Timer + Locked Draw Button -->
+      <div class="ruled-note rounded-2xl px-6 sm:px-8 py-5 pt-7 relative">
+        <div class="masking-tape w-20 h-4 -top-2 left-6 -rotate-3"></div>
+        <div class="masking-tape w-20 h-4 -top-2 right-6 rotate-3"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h2 class="text-xl sm:text-2xl font-extrabold text-[#1f2421]">Presencia Cards</h2>
-            <p class="text-xs text-[#4a534d]">Draw a random card, flip to read the prompt, and sit with it for one minute.</p>
+            <p class="text-xs text-[#4a534d]">Click the card to flip between front and back.</p>
           </div>
 
-          <!-- 60-Second Timer Box -->
-          <div class="flex items-center gap-2.5 bg-[#fdf2c4] border border-[#dfd092] px-3.5 py-2 rounded-xl shadow-2xs">
-            <span id="cardTimerDisplay" class="font-mono text-xl sm:text-2xl font-extrabold text-[#1f2421] tracking-wider">
+          <!-- Timer + Draw New Card Button Side-by-Side -->
+          <div class="flex flex-wrap items-center gap-2.5 bg-[#fdf2c4] border border-[#dfd092] px-3.5 py-2 rounded-xl shadow-2xs">
+            <span id="cardTimerDisplay" class="font-mono text-xl sm:text-2xl font-extrabold text-[#1f2421] tracking-wider pr-1">
               01:00
             </span>
             <button
               id="btnPauseTimer"
               type="button"
-              class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white hover:bg-[#f3ede0] text-[#1f2421] border border-[#d6c9a5] cursor-pointer"
+              class="text-[11px] font-bold px-2.5 py-1.5 rounded-md bg-white hover:bg-[#f3ede0] text-[#1f2421] border border-[#d6c9a5] cursor-pointer"
             >
               Pause
             </button>
             <button
-              id="btnResetTimer"
+              id="btnDrawRandomCard"
               type="button"
-              class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-white hover:bg-[#f3ede0] text-[#1f2421] border border-[#d6c9a5] cursor-pointer"
-              title="Reset 1-minute timer"
+              disabled
+              class="text-xs font-bold px-3.5 py-1.5 rounded-lg bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] transition-colors cursor-pointer disabled:opacity-45 disabled:cursor-not-allowed"
+              title="Available once the 1-minute timer finishes"
             >
-              Reset
+              Draw New Card
             </button>
           </div>
         </div>
-
-        <!-- Timer Complete Gentle Notice -->
-        <div id="timerDoneBanner" class="hidden bg-[#243b2f] text-[#fbf9f3] text-xs font-bold px-4 py-2.5 rounded-xl text-center">
-          One minute has passed. Flip the card anytime or draw another when you're ready.
-        </div>
-
-        <!-- 3D Flippable Card Container -->
-        <div class="py-2">
-          <div class="flip-scene">
-            <div id="presenciaFlipCard" class="flip-card-inner" role="button" tabindex="0" aria-label="Flip Presencia Card">
-
-              <!-- FRONT OF CARD: Title + Sage Symbol + Subtitle -->
-              <div class="flip-face">
-                <div class="w-full pt-1">
-                  <h3 id="cardFrontTitle" class="text-2xl sm:text-[26px] font-black tracking-[0.06em] uppercase text-[#141715]">
-                    ARRIVAL
-                  </h3>
-                </div>
-
-                <div id="cardFrontSymbol" class="my-auto flex items-center justify-center w-36 h-36">
-                  <!-- SVG symbol injected by JS -->
-                </div>
-
-                <div class="w-full pb-2">
-                  <p id="cardFrontSubtitle" class="text-lg font-medium text-[#28302b] leading-snug">
-                    Begin where you are
-                  </p>
-                  <span class="inline-block mt-3 text-[11px] font-bold uppercase tracking-wider text-[#5a6b5f]">
-                    Click card to flip &rarr;
-                  </span>
-                </div>
-              </div>
-
-              <!-- BACK OF CARD: Bold Question + Body + Italic Takeaway -->
-              <div class="flip-face flip-face-back">
-                <div class="w-full pt-1">
-                  <h4 id="cardBackQuestion" class="text-[17px] sm:text-lg font-extrabold text-[#141715] leading-snug">
-                    What's already arrived, and what's still catching up?
-                  </h4>
-                </div>
-
-                <div id="cardBackBody" class="my-auto space-y-3 text-sm sm:text-[14.5px] leading-relaxed text-[#2f3632] px-1">
-                  <!-- Body paragraphs injected by JS -->
-                </div>
-
-                <div class="w-full pb-1">
-                  <p id="cardBackFooter" class="italic text-[15px] sm:text-base font-medium text-[#1f2421] leading-snug">
-                    Let this moment count as a beginning, even if nothing else changes.
-                  </p>
-                  <span class="inline-block mt-3 text-[11px] font-bold uppercase tracking-wider text-[#5a6b5f]">
-                    &larr; Click card to see symbol
-                  </span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Action Buttons -->
-        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-          <button
-            id="btnFlipCard"
-            type="button"
-            class="px-5 py-2.5 rounded-xl bg-[#fdf2c4] hover:bg-[#f6e6a4] text-[#1f2421] border border-[#dfd092] text-xs sm:text-sm font-bold transition-colors cursor-pointer shadow-2xs"
-          >
-            Flip Card (Front / Back)
-          </button>
-
-          <button
-            id="btnDrawRandomCard"
-            type="button"
-            class="px-6 py-2.5 rounded-xl bg-[#243b2f] hover:bg-[#17271f] text-[#fbf9f3] text-xs sm:text-sm font-bold transition-colors cursor-pointer shadow-xs"
-          >
-            Draw New Random Card
-          </button>
-        </div>
-
       </div>
+
+      <!-- 3D Flippable Card Floating Directly on the Corkboard -->
+      <div class="flip-scene">
+        <div id="presenciaFlipCard" class="flip-card-inner" role="button" tabindex="0" aria-label="Flip Presencia Card">
+
+          <!-- FRONT OF CARD: Title + Sage Symbol + Subtitle (Tighter Spacing) -->
+          <div class="flip-face">
+            <h3 id="cardFrontTitle" class="text-2xl sm:text-[26px] font-black tracking-[0.06em] uppercase text-[#141715]">
+              ARRIVAL
+            </h3>
+
+            <div id="cardFrontSymbol" class="flex items-center justify-center w-32 h-32">
+              <!-- SVG symbol injected by JS -->
+            </div>
+
+            <p id="cardFrontSubtitle" class="text-lg font-medium text-[#28302b] leading-snug">
+              Begin where you are
+            </p>
+          </div>
+
+          <!-- BACK OF CARD: Bold Question + Body + Italic Takeaway (Tighter Spacing) -->
+          <div class="flip-face flip-face-back">
+            <h4 id="cardBackQuestion" class="text-[17px] sm:text-lg font-extrabold text-[#141715] leading-snug">
+              What's already arrived, and what's still catching up?
+            </h4>
+
+            <div id="cardBackBody" class="space-y-2.5 text-sm sm:text-[14.5px] leading-relaxed text-[#2f3632] px-1">
+              <!-- Body paragraphs injected by JS -->
+            </div>
+
+            <p id="cardBackFooter" class="italic text-[15px] sm:text-base font-medium text-[#1f2421] leading-snug">
+              Let this moment count as a beginning, even if nothing else changes.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
   </main>
@@ -464,8 +428,8 @@
 
     const flipCardEl = document.getElementById("presenciaFlipCard");
     const timerDisplayEl = document.getElementById("cardTimerDisplay");
-    const timerDoneBanner = document.getElementById("timerDoneBanner");
     const btnPauseTimer = document.getElementById("btnPauseTimer");
+    const btnDrawRandomCard = document.getElementById("btnDrawRandomCard");
 
     function updateTimerUI() {
       const mins = String(Math.floor(timerSeconds / 60)).padStart(2, "0");
@@ -478,7 +442,8 @@
       timerSeconds = 60;
       timerPaused = false;
       btnPauseTimer.textContent = "Pause";
-      timerDoneBanner.classList.add("hidden");
+      btnPauseTimer.disabled = false;
+      btnDrawRandomCard.disabled = true;
       updateTimerUI();
 
       timerInterval = setInterval(() => {
@@ -488,7 +453,8 @@
           updateTimerUI();
         } else {
           clearInterval(timerInterval);
-          timerDoneBanner.classList.remove("hidden");
+          btnDrawRandomCard.disabled = false;
+          btnPauseTimer.disabled = true;
           sfxWin();
         }
       }, 1000);
@@ -502,7 +468,6 @@
       currentCardIndex = nextIdx;
       const card = PRESENCIA_CARDS_DECK[currentCardIndex];
 
-      // Always reset to front face when dealing a new card
       flipCardEl.classList.remove("is-flipped");
 
       document.getElementById("cardFrontTitle").textContent = card.title;
@@ -531,15 +496,17 @@
       }
     });
 
-    document.getElementById("btnFlipCard").addEventListener("click", toggleCardFlip);
-    document.getElementById("btnDrawRandomCard").addEventListener("click", drawRandomPresenciaCard);
+    btnDrawRandomCard.addEventListener("click", () => {
+      if (!btnDrawRandomCard.disabled) {
+        drawRandomPresenciaCard();
+      }
+    });
 
     btnPauseTimer.addEventListener("click", () => {
+      if (btnPauseTimer.disabled) return;
       timerPaused = !timerPaused;
       btnPauseTimer.textContent = timerPaused ? "Resume" : "Pause";
     });
-
-    document.getElementById("btnResetTimer").addEventListener("click", startOneMinuteTimer);
 
     // =========================================================================
     // 2. PRESENCIA CAPSULE NOTES (24 Place-Aware Prompts for Claw Machine)
